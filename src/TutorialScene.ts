@@ -1,19 +1,19 @@
 export default class tutorialScene extends Phaser.Scene {
     private background: any;
-    private cup: any;
+    private counter: any;
     private instruction: any;
-    private oranges: any;
-    private vanilla: any;
     private clear: any;
     private send: any;
     private whiteCat: any;
     private orangeCat: any;
+    private oranges: any;
+    private vanilla: any;
 
     private rng = Math.floor(Math.random() * 2) + 1; // rng for which cat to send out
 
     private wantedIngredient = ""; // string to hold the desired ingredient for each cat
 
-    private myCup: { //myCup, 2 arrays titled oranges and vanilla which hold the images that go into each cup
+    private myCounter: { //myCounter, 2 arrays titled oranges and vanilla which hold the images that go onto the Counter
         oranges: Phaser.GameObjects.Image[];
         vanilla: Phaser.GameObjects.Image[];
       } = {
@@ -29,8 +29,8 @@ export default class tutorialScene extends Phaser.Scene {
     create(){
         //set background
         this.background = this.add.image(this.scale.width/2, this.scale.height/2, "background");
-        //set cup
-        this.cup = this.add.image(700, 500, "cup");
+        //set counter
+        this.counter = this.add.image(700, 500, "counter");
         //set instructions
         this.instruction = this.add.image(150,180, "instruction1");
         //set ingredients
@@ -65,7 +65,7 @@ export default class tutorialScene extends Phaser.Scene {
         const keys: ('oranges' | 'vanilla')[] = ['oranges', 'vanilla'];
       
         keys.forEach((ingredientKey) => {
-          this.myCup[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => {
+          this.myCounter[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => {
             if (
               (ingredient.texture.key === 'oranges' &&
                 (ingredient.x !== 300 || ingredient.y !== 800)) ||
@@ -77,13 +77,13 @@ export default class tutorialScene extends Phaser.Scene {
           });
         });
       
-        this.myCup.oranges.length = 0;
-        this.myCup.vanilla.length = 0;
+        this.myCounter.oranges.length = 0;
+        this.myCounter.vanilla.length = 0;
       }
 
       handleSendClick(){
-        if ((this.wantedIngredient === "oranges" && this.myCup.oranges.length>0 && this.myCup.vanilla.length === 0)||
-         (this.wantedIngredient === "vanilla" && this.myCup.vanilla.length>0 && this.myCup.oranges.length === 0)){
+        if ((this.wantedIngredient === "oranges" && this.myCounter.oranges.length>0 && this.myCounter.vanilla.length === 0)||
+         (this.wantedIngredient === "vanilla" && this.myCounter.vanilla.length>0 && this.myCounter.oranges.length === 0)){
             this.scene.start('winScene');
         }
         else{
@@ -104,18 +104,18 @@ export default class tutorialScene extends Phaser.Scene {
 
       handleOrangeClick() {
         const newOranges = this.add.image(700, 500, 'oranges').setScale(0.25);
-        this.addToMyCup(newOranges);
+        this.addToMyCounter(newOranges);
       }
     
       handleVanillaClick() {
         const newVanilla = this.add.image(700, 400, 'vanilla').setScale(0.35);
-        this.addToMyCup(newVanilla);
+        this.addToMyCounter(newVanilla);
       }
     
-      addToMyCup(image: Phaser.GameObjects.Image) {
+      addToMyCounter(image: Phaser.GameObjects.Image) {
         const key = image.texture.key;
         if (key === 'oranges' || key === 'vanilla') {
-          this.myCup[key].push(image);
+          this.myCounter[key].push(image);
         }
       }
 
