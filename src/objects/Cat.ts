@@ -1,6 +1,4 @@
-export { }
-
-class Cat extends Phaser.Physics.Arcade.Sprite {
+export default class Cat extends Phaser.Physics.Arcade.Sprite {
 
     public catType: string;
     public accessory: string;
