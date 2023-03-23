@@ -1,3 +1,5 @@
+import Cat from "./objects/Cat";
+
 export default class tutorialScene extends Phaser.Scene {
   private background: any;
   private counter: any;
@@ -6,9 +8,10 @@ export default class tutorialScene extends Phaser.Scene {
   private send: any;
   // add Cats here
   // EXAMPLE --------------------------------------------------------------------------------------------
-  private whiteCat: any;
-  private orangeCat: any;
-
+    //private whiteCat: Cat;
+    //private orangeCat: Cat;
+    private cat: Cat;
+    private catType: string;
 
   // add Ingredients here 
   // EXAMPLE --------------------------------------------------------------------------------------------
@@ -67,16 +70,19 @@ export default class tutorialScene extends Phaser.Scene {
         if (this.rng === 1){ // rng option for orange cat
           //set cats
           // EXAMPLE ------------------------------------------------------------------------------------
-          this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
-          
-          this.wantedIngredient = "oranges"; //set wanted ingredient to oranges
+            //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
+            //this.orangeCat = new Cat(this, 700, 150, 'orange');
+            //this.add.existing(this.orangeCat);
+            this.catType = 'orange';
         }
         else{
           // EXAMPLE ------------------------------------------------------------------------------------
-          this.whiteCat = this.add.image(700,150, "whiteCat").setScale(.25); //throw a white cat behind the counter
-            
-          this.wantedIngredient = "vanilla"; //set wanted ingredient to vanilla
+            //this.whiteCat = this.add.image(700,150, "whiteCat").setScale(.25); //throw a white cat behind the counter
+            this.catType = 'white';
         }
+
+        this.cat = new Cat(this, 700, 150, this.catType);
+        this.wantedIngredient = this.cat.wantedIngredients[0];
 
     }
 
