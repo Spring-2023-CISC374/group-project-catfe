@@ -46,7 +46,7 @@ export default class tutorialScene extends Phaser.Scene {
         //clear button
         this.clear = this.add.image(1350, 100, 'clear').setInteractive().on('pointerdown', () => this.handleClearClick());
         //send button
-        this.clear = this.add.image(1350, 200, 'send').setInteractive().on('pointerdown', () => this.handleSendClick());
+        this.send = this.add.image(1350, 200, 'send').setInteractive().on('pointerdown', () => this.handleSendClick());
         
         if (this.rng === 1){ // rng option for orange cat
             this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
