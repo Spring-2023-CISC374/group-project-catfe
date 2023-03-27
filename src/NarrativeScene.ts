@@ -1,23 +1,23 @@
 import Phaser from 'phaser'
 
-export default class titleScene extends Phaser.Scene{
-//DIYA - title screen
+export default class narrativeScene extends Phaser.Scene{
+//DIYA - narrative scene
     
     private button: any;
 
     constructor(){
-        super({key: 'TitleScene'});
+        super({key: 'NarrativeScene'});
     }
 // TitleScene code lifted from Katarina Pfeifer and Anna McCarter
     create(){
         //If they click anywhere it moves on to the tutorial
-        this.button=this.add.image(this.scale.width/2, this.scale.height/2, "titleScreen")
+        this.button=this.add.image(this.scale.width/2, this.scale.height/2, "narrativeScene")
         .setInteractive()
         .on('pointerdown', ()=>this.goToTutorial());
         this.button.setScale(0.8);
     }
 
     goToTutorial(){
-        this.scene.start('NarrativeScene');
+        this.scene.start('InstructionsScene');
     }
 }
