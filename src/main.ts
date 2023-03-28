@@ -19,7 +19,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: false
 		},
 	},
-	scene: [PreloadScene, TitleScene, NarrativeScene, InstructionsScene, TutorialScene, winScene]
+	scene: [PreloadScene, TitleScene, NarrativeScene, InstructionsScene, TutorialScene, winScene] //Diya - added new scenes
 }
 
 export default new Phaser.Game(config)
