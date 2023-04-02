@@ -5,3 +5,14 @@ Anthony Racioppo:
 - Set up initial code base for preloading, title screen, functions for handling submitting orders, base functionality of gameplay elements, ingredients, clear button, cat generation, validity check for orders
 
 
+Jillian Camp:
+- Worked on tutorial pop-ups mechanic. 
+- Changed the name of TutorialScene to GameScene, and then created my own TutorialScene with the pop-ups for the tutorial.
+- Created pop ups, with the final click in the tutorial executing `this.game.start('GameScene')` so that gameplay begins when tutorial 
+is over.
+- Edited TitleScene.ts to execute `this.game.start('TutorialScene')` in order to visualize the pop-ups mechanic.
+
+- To see my work: 
+$ git checkout -b jill
+$ git fetch origin jill
+$ npm run start 
