@@ -1,6 +1,7 @@
 export default class TutorialScene extends Phaser.Scene {
     private background: any;
     private counter: any;
+    private cup: any;
     private instruction: any;
     private clear: any;
     private send: any;
@@ -21,6 +22,8 @@ export default class TutorialScene extends Phaser.Scene {
         this.background = this.add.image(this.scale.width/2, this.scale.height/2, "background");
         //set counter
         this.counter = this.add.image(700, 500, "counter");
+        //set cup
+        this.cup = this.add.image(700,500, "cup");
         //set instructions
         this.instruction = this.add.image(150,180, "instruction1");
         //set ingredients
