@@ -1,10 +1,12 @@
 import Phaser from 'phaser'
 import PreloadScene from './PreloadScene'
 import TitleScene from './TitleScene'
-import TutorialScene from './TutorialScene'
+import GameScene from './GameScene'
 import winScene from './winScene'
+
 import NarrativeScene from './NarrativeScene'
 import InstructionsScene from './InstructionsScene'
+import TutorialScene from './TutorialScene'
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -19,7 +21,9 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: false
 		},
 	},
-	scene: [PreloadScene, TitleScene, NarrativeScene, InstructionsScene, TutorialScene, winScene] //Diya - added new scenes
+
+	scene: [PreloadScene, GameScene, TitleScene, NarrativeScene, InstructionsScene, TutorialScene, winScene],
+
 }
 
 export default new Phaser.Game(config)
