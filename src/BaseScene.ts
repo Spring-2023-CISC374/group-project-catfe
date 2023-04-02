@@ -10,8 +10,8 @@ export default class tutorialScene extends Phaser.Scene {
   // EXAMPLE --------------------------------------------------------------------------------------------
     //private whiteCat: Cat;
     //private orangeCat: Cat;
-    private cat: Cat;
-    private catType: string;
+    private cat?: Cat;
+    private catType?: string;
 
   // add Ingredients here 
   // EXAMPLE --------------------------------------------------------------------------------------------

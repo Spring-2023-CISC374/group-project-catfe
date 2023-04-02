@@ -8,7 +8,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image('titleScreen', 'assets/titleScreen.png');
+		this.load.image('titleScreen', 'assets/catfe_title.png'); //created new title/preload scene - DIYA
 		this.load.image('background', 'assets/background.png');
 		this.load.image('orangeCat', 'assets/orangeCat.jpg');
 		this.load.image('whiteCat', 'assets/whiteCat.jpg');
@@ -19,6 +19,10 @@ export default class HelloWorldScene extends Phaser.Scene {
 		this.load.image('clear', 'assets/clear.png');
 		this.load.image('send', 'assets/send.png');
 		this.load.image('winScene', 'assets/winScreen.png');
+		this.load.image('narrativeScene', 'assets/narrativeScene.png'); //Diya- added
+		this.load.image('instructionsScene', 'assets/InstructionsScene.png'); //diya - added
+
+
 	}
 
 	create() {
