@@ -8,8 +8,10 @@ Anthony Racioppo:
 Jillian Camp:
 - Worked on tutorial pop-ups mechanic. 
 - Changed the name of TutorialScene to GameScene, and then created my own TutorialScene with the pop-ups for the tutorial.
+- Created pop ups, with the final click in the tutorial executing `this.game.start('GameScene')` so that gameplay begins when tutorial 
+is over.
 - Edited TitleScene.ts to execute `this.game.start('TutorialScene')` in order to visualize the pop-ups mechanic.
-- Did not yet make my mechanic work in tandem with GameScene or BaseScene. 
+
 - To see my work: 
 $ git checkout -b jill
 $ git fetch origin jill
