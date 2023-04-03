@@ -1,3 +1,5 @@
+import Cat from "./objects/Cat";
+
 export default class TutorialScene extends Phaser.Scene {
     private background: any;
     private counter: any;
@@ -5,8 +7,8 @@ export default class TutorialScene extends Phaser.Scene {
     private instruction: any;
     private clear: any;
     private send: any;
-    private whiteCat: any;
-    private orangeCat: any;
+    private cat?: Cat;
+    private catType?: string;
     private oranges: any;
     private vanilla: any;
     private tutorialMessage: any;
@@ -38,14 +40,21 @@ export default class TutorialScene extends Phaser.Scene {
         this.clear = this.add.image(1350, 100, 'clear');
         //send button
         this.send = this.add.image(1350, 200, 'send');
-        if (this.rng === 1){ // rng option for orange cat
-            this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter 
+        if (this.rng === 1) { // rng option for orange cat
+            //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
+
+            this.catType = 'orange';
+
         }
-        else{
-            this.whiteCat = this.add.image(700,150, "whiteCat").setScale(.25); //throw a white cat behind the counter 
+        else {
+
+            this.catType = 'white';
+
         }
 
+        this.cat = new Cat(this, 700, 150, this.catType);
 
+      
         //BEGIN TUTORIAL: 
         this.tutorialMessage = this.add.text(0, 0, 'Welcome to Catfe!\nClick anywhere to continue.', { font: '32px Monospace',
         color: '#ffffff',

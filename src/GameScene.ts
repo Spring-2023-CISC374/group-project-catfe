@@ -1,11 +1,16 @@
+import Cat from "./objects/Cat";
+
 export default class GameScene extends Phaser.Scene {
     private background: any;
     private counter: any;
     private instruction: any;
     private clear: any;
     private send: any;
-    private whiteCat: any;
-    private orangeCat: any;
+    private cup: any;
+    //private whiteCat: any;
+    //private orangeCat: any;
+    private cat?: Cat;
+    private catType?: string;
     private oranges: any;
     private vanilla: any;
 
@@ -32,7 +37,8 @@ export default class GameScene extends Phaser.Scene {
         //set counter
         this.counter = this.add.image(700, 500, "counter");
         //set instructions
-        this.instruction = this.add.image(150,180, "instruction1");
+        this.instruction = this.add.image(150, 180, "instruction1");
+        this.cup = this.add.image(700, 500, "cup");
         //set ingredients
         this.oranges = this.add.group();
         this.vanilla = this.add.group();
@@ -48,15 +54,20 @@ export default class GameScene extends Phaser.Scene {
         //send button
         this.send = this.add.image(1350, 200, 'send').setInteractive().on('pointerdown', () => this.handleSendClick());
         if (this.rng === 1){ // rng option for orange cat
-            this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
-          
-            this.wantedIngredient = "oranges"; //set wanted ingredient to oranges
+            //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
+
+            this.catType = 'orange';
+
         }
         else{
-            this.whiteCat = this.add.image(700,150, "whiteCat").setScale(.25); //throw a white cat behind the counter
-            
-            this.wantedIngredient = "vanilla"; //set wanted ingredient to vanilla
+
+            this.catType = 'white';
+
         }
+
+        this.cat = new Cat(this, 700, 150, this.catType);
+
+        this.wantedIngredient = this.cat.wantedIngredients[0];
 
     }
     handleClearClick() {

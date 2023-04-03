@@ -7,11 +7,15 @@ export default class Cat extends Phaser.Physics.Arcade.Sprite {
 
 
     constructor(scene, x: number, y: number, catType: string, acc: string = 'none') {
-        super(scene, x, y, catType);
+        super(scene, x, y, catType.concat('Cat'));
 
         this.catType = catType;
         this.accessory = acc;
         this.wantedIngredients = this.determineOrder();
+
+        this.setScale(0.25);
+
+        scene.add.existing(this);
     }
 
     determineOrder() {
