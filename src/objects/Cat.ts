@@ -16,6 +16,8 @@ export default class Cat extends Phaser.Physics.Arcade.Sprite {
         this.setScale(0.25);
 
         scene.add.existing(this);
+
+        this.setVisible(false);
     }
 
     determineOrder() {

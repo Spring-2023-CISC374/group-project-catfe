@@ -53,7 +53,7 @@ export default class TutorialScene extends Phaser.Scene {
         }
 
         this.cat = new Cat(this, 700, 150, this.catType);
-
+        this.cat.setVisible(true);
       
         //BEGIN TUTORIAL: 
         this.tutorialMessage = this.add.text(0, 0, 'Welcome to Catfe!\nClick anywhere to continue.', { font: '32px Monospace',
