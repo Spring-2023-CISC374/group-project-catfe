@@ -18,6 +18,6 @@ export default class instructionsScene extends Phaser.Scene{
     }
 
     goToTutorial(){
-        this.scene.start('tutorialScene');
+        this.scene.start('TutorialScene');
     }
 }
