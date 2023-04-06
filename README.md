@@ -25,3 +25,7 @@ $ git checkout -b jill
 $ git fetch origin jill
 $ npm run start 
 
+Diya Shah:
+- Updated and added 3 new scenes: TitleScene, NarrativeScene, InstructionScene
+- Created the visuals and graphics for these scenes, so it would be more visually pleasing
+- Edited preloadscene as well
