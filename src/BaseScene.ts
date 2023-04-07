@@ -1,26 +1,21 @@
 import Cat from "./objects/Cat";
 
 export default class tutorialScene extends Phaser.Scene {
-  private background: any;
-  private counter: any;
-  private instruction: any;
-  private clear: any;
-  private send: any;
-  // add Cats here
-  // EXAMPLE --------------------------------------------------------------------------------------------
-    //private whiteCat: Cat;
-    //private orangeCat: Cat;
-    private cat?: Cat;
-    private catType?: string;
+    private background: any;
+    private counter: any;
+    private instruction: any;
+    private clear: any;
+    private send: any;
+
+
+    private cats: Array<Cat>;
+    private queue: Array<Cat> = [];
+
 
   // add Ingredients here 
   // EXAMPLE --------------------------------------------------------------------------------------------
-  private vanilla: any;
-  private oranges: any
-
-    private rng = Math.floor(Math.random() * 2) + 1; // rng for which cat to send out
-
-    private wantedIngredient = ""; // string to hold the desired ingredient for each cat
+    private vanilla: any;
+    private oranges: any
 
     private myCounter: { //myCounter is comprised of menu item arrays that hold the images that go into each cat's inventory
         // ingredients
@@ -67,22 +62,18 @@ export default class tutorialScene extends Phaser.Scene {
         this.clear = this.add.image(1350, 200, 'send').setInteractive().on('pointerdown', () => this.handleSendClick());
         
         
-        if (this.rng === 1){ // rng option for orange cat
-          //set cats
-          // EXAMPLE ------------------------------------------------------------------------------------
-            //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
-            //this.orangeCat = new Cat(this, 700, 150, 'orange');
-            //this.add.existing(this.orangeCat);
-            this.catType = 'orange';
-        }
-        else{
-          // EXAMPLE ------------------------------------------------------------------------------------
-            //this.whiteCat = this.add.image(700,150, "whiteCat").setScale(.25); //throw a white cat behind the counter
-            this.catType = 'white';
-        }
+        this.cats = [new Cat(this, 700, 150, 'orange'),
+        new Cat(this, 700, 150, 'white')
+        ];
 
-        this.cat = new Cat(this, 700, 150, this.catType);
-        this.wantedIngredient = this.cat.wantedIngredients[0];
+        //Add Cats
+        //EXAMPLE --------------------------------------------------------------------------------------
+        while (this.cats.length > 0) {
+            let rng: number = Math.floor(Math.random() * this.cats.length); // rng for which cat to send out
+            this.queue.push(this.cats.splice(rng, 1)[0]);
+        }
+        this.queue[0].setVisible(true);
+
 
     }
 
@@ -110,10 +101,17 @@ export default class tutorialScene extends Phaser.Scene {
 
       handleSendClick(){
         // EXAMPLE --------------------------------------------------------------------------------------
-        if ((this.wantedIngredient === "oranges" && this.myCounter.oranges.length>0 && this.myCounter.vanilla.length === 0)||
-         (this.wantedIngredient === "vanilla" && this.myCounter.vanilla.length>0 && this.myCounter.oranges.length === 0)){
-            this.scene.start('winScene');
-        }
+          if ((this.queue[0].wantedIngredients[0] === "oranges" && this.myCounter.oranges.length > 0 && this.myCounter.vanilla.length === 0) ||
+              (this.queue[0].wantedIngredients[0] === "vanilla" && this.myCounter.vanilla.length > 0 && this.myCounter.oranges.length === 0)) {
+              this.queue[0].setVisible(false);
+              this.queue.shift();
+              this.handleClearClick();
+              if (this.queue.length === 0) {
+                  this.scene.start('winScene');
+              } else {
+                  this.queue[0].setVisible(true);
+              }
+          }
         else{
             this.handleClearClick();
             const tempText = this.add.text(920, 150, "Wrong! Try Again!", {
