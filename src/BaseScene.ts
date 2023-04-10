@@ -8,7 +8,7 @@ export default class tutorialScene extends Phaser.Scene {
     private send: any;
 
 
-    private cats: Array<Cat>;
+    private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
 
 
