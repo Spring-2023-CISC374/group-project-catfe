@@ -10,7 +10,7 @@ export default class GameScene extends Phaser.Scene {
     private oranges: any;
     private vanilla: any;
 
-    private cats: Array<Cat>;
+    private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
 
     private myCounter: { //myCounter, 2 arrays titled oranges and vanilla which hold the images that go onto the Counter
