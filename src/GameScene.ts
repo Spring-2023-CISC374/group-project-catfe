@@ -9,6 +9,8 @@ export default class GameScene extends Phaser.Scene {
     private cup: any;
     private oranges: any;
     private vanilla: any;
+    private money: integer = 0;
+    private moneyCount: any;
 
     private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
@@ -48,6 +50,8 @@ export default class GameScene extends Phaser.Scene {
         this.clear = this.add.image(1350, 100, 'clear').setInteractive().on('pointerdown', () => this.handleClearClick());
         //send button
         this.send = this.add.image(1350, 200, 'send').setInteractive().on('pointerdown', () => this.handleSendClick());
+
+        this.moneyCount = this.add.text(300, 16, 'Money: '+this.money, { fontSize: '32px', color: 'red'});
 
         this.cats = [new Cat(this, 700, 150, 'orange'),
             new Cat(this, 700, 150, 'white')
@@ -102,14 +106,20 @@ export default class GameScene extends Phaser.Scene {
             this.queue[0].setVisible(false);
             this.queue.shift();
             this.handleClearClick();
+            this.money+=10;
+            this.moneyCount.setText('Money: '+this.money);
             if (this.queue.length === 0) {
-                this.scene.start('winScene');
+                this.scene.start('winScene', {money: this.money});
             } else {
                 this.queue[0].setVisible(true);
             }
         }
         else{
-            this.handleClearClick();
+          if(this.money>=2){
+            this.money-=2;
+            this.moneyCount.setText('Money: '+this.money);
+          }  
+          this.handleClearClick();
             const tempText = this.add.text(920, 150, "Wrong! Try Again!", {
                 fontFamily: 'Arial',
                 fontSize: '32px',
