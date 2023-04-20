@@ -7,6 +7,7 @@ Diya Shah: added new title scene, added new narrative scene, and added new instr
 
 Anthony Racioppo:
 - Set up initial code base for preloading, title screen, functions for handling submitting orders, base functionality of gameplay elements, ingredients, clear button, cat generation, validity check for orders
+- Set up Money System and passing money between scenes
 
 Emma Frampton:
 - Added abstracted BaseScene with detailed docstrings for future code references.
