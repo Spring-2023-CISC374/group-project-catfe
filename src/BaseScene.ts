@@ -63,7 +63,7 @@ export default class tutorialScene extends Phaser.Scene {
         
         
         this.cats = [new Cat(this, 700, 150, 'orange'),
-        new Cat(this, 700, 150, 'white')
+        new Cat(this, 700, 150, 'white'), new Cat(this, 700, 150, 'blackCat')
         ];
 
         //Add Cats
