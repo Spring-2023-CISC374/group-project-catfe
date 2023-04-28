@@ -14,6 +14,7 @@ export default class GameScene extends Phaser.Scene {
     private moneyCount: any;
     private levelCount: any;
     private level: integer = 0;
+    private final_level: integer = 3;
 
     private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
@@ -38,8 +39,9 @@ export default class GameScene extends Phaser.Scene {
         super({key: 'GameScene'});
     }
 
-    create(data: {level: integer}){
+    create(data: {level: integer, money: integer}){
         this.level = data.level;
+        this.money = data.money;
         //set background
         this.background = this.add.image(this.scale.width/2, this.scale.height/2, "background");
         //set counter
@@ -143,7 +145,12 @@ export default class GameScene extends Phaser.Scene {
             this.money += 10;
             this.moneyCount.setText('Money: ' + this.money);
             if (this.queue.length === 0) {
+              if (this.level === this.final_level){
+                this.scene.start('FinalWinScene', { money: this.money });
+              }
+              else{
                 this.scene.start('winScene', { money: this.money, level: this.level });
+              }
             } else {
                 this.queue[0].setVisible(true);
             }

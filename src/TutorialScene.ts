@@ -96,7 +96,7 @@ export default class TutorialScene extends Phaser.Scene {
         color: '#ffffff',
         backgroundColor: 'pink',
         padding: {x:20, y:20} });
-        this.background.setInteractive().on('pointerdown', () => {this.scene.start('GameScene', {level: this.level})});
+        this.background.setInteractive().on('pointerdown', () => {this.scene.start('GameScene', {level: this.level, money: 0})});
     }
         
 
