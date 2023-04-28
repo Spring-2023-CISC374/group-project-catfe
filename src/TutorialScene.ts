@@ -26,16 +26,16 @@ export default class TutorialScene extends Phaser.Scene {
         //set counter
         this.counter = this.add.image(700, 500, "counter");
         //set cup
-        this.cup = this.add.image(700,500, "cup");
+        this.cup = this.add.image(750, 500, "cup").setScale(.5);
         //set instructions
         this.instruction = this.add.image(150,180, "instruction1");
         //set ingredients
         this.oranges = this.add.group();
         this.vanilla = this.add.group();
         //set their images and buttons
-        const orangesImage = this.add.image(300, 800, 'oranges')
+        const orangesImage = this.add.image(550, 650, 'peach-tea.png').setScale(.5)
         this.oranges.add(orangesImage);
-        const vanillaImage = this.add.image(1100, 750, 'vanilla')
+        const vanillaImage = this.add.image(950, 660, 'vanillaLatte').setInteractive().setScale(.4);
         this.vanilla.add(vanillaImage);
         //clear button
         this.clear = this.add.image(1350, 100, 'clear');
@@ -53,7 +53,7 @@ export default class TutorialScene extends Phaser.Scene {
 
         }
 
-        this.cat = new Cat(this, 700, 150, this.catType);
+        this.cat = new Cat(this, 700, 355, this.catType);
         this.cat.setVisible(true);
       
         //BEGIN TUTORIAL: 

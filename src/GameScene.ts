@@ -40,20 +40,24 @@ export default class GameScene extends Phaser.Scene {
         //set counter
         this.counter = this.add.image(700, 500, "counter");
         //set instructions
-        this.instruction = this.add.image(150, 180, "instruction1");
-        this.cup = this.add.image(700, 500, "cup");
+        this.instruction = this.add.image(200, 250, "instruction1").setScale(.60);
+        this.cats = [new Cat(this, 700, 391, 'orange'),
+        new Cat(this, 700, 391, 'white'), 
+        new Cat(this, 700, 391, 'black')];
+
+        this.cup = this.add.image(750, 500, "cup").setScale(.5);
         //set ingredients
         this.peachTea = this.add.group();
         this.vanillaLatte = this.add.group();
         this.blackCoffee = this.add.group();
         //set their images and buttons
-        const peachTeaImage = this.add.image(300, 800, 'peachTea').setInteractive();
+        const peachTeaImage = this.add.image(550, 650, 'peachTea').setInteractive().setScale(.5);
         peachTeaImage.on('pointerdown', () => this.handlePeachTeaClick());
         this.peachTea.add(peachTeaImage);
-        const vanillaLatteImage = this.add.image(1100, 750, 'vanillaLatte').setInteractive();
+        const vanillaLatteImage = this.add.image(950, 660, 'vanillaLatte').setInteractive().setScale(.4);
         vanillaLatteImage.on('pointerdown', () => this.handleVanillaClick());
         this.vanillaLatte.add(vanillaLatteImage);
-        const blackCoffeeImage = this.add.image(750, 750, 'blackCoffee').setInteractive().setScale(.3);
+        const blackCoffeeImage = this.add.image(750, 700, 'blackCoffee').setInteractive().setScale(.4);
         blackCoffeeImage.on('pointerdown', () => this.handleCoffeeClick());
         this.blackCoffee.add(blackCoffeeImage);
         //clear button
@@ -66,10 +70,6 @@ export default class GameScene extends Phaser.Scene {
 
         this.levelCount = this.add.text(300, 48, 'Level: '+this.level, { fontSize: '32px', color: 'red'});
 
-        this.cats = [new Cat(this, 700, 150, 'orange'),
-            new Cat(this, 700, 150, 'white'), 
-            new Cat(this, 700, 150, 'black')
-        ];
 
         while (this.cats.length > 0) {
             let rng: number = Math.floor(Math.random() * this.cats.length); // rng for which cat to send out
@@ -153,17 +153,17 @@ export default class GameScene extends Phaser.Scene {
       }
 
       handlePeachTeaClick() {
-        const newPeachTea = this.add.image(700, 500, 'peachTea').setScale(0.25);
+        const newPeachTea = this.add.image(750, 470, 'peachTea').setScale(0.30);
         this.addToMyCounter(newPeachTea);
       }
     
       handleVanillaClick() {
-        const newVanilla = this.add.image(700, 400, 'vanillaLatte').setScale(0.35);
+        const newVanilla = this.add.image(750, 470, 'vanillaLatte').setScale(0.30);
         this.addToMyCounter(newVanilla);
       }
 
       handleCoffeeClick() {
-        const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.05);
+        const newCoffee = this.add.image(750, 470, 'blackCoffee').setScale(0.30);
         this.addToMyCounter(newCoffee);
       }
     
