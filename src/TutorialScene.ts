@@ -54,7 +54,7 @@ export default class TutorialScene extends Phaser.Scene {
 
         }
 
-        this.cat = new Cat(this, 700, 150, this.catType);
+        this.cat = new Cat(this, 700, 150, this.catType, 1);
         this.cat.setVisible(true);
       
         //BEGIN TUTORIAL: 
