@@ -31,7 +31,12 @@ export default class Cat extends Phaser.Physics.Arcade.Sprite {
             return ['vanillaLatte'];
         } else if (this.catType === 'black') {
             return ['blackCoffee'];
-        } else {
+        
+        } 
+        else if (this.catType === 'orangeWhite') {
+            return ['peachTea', 'vanillaLatte'];
+        }
+        else {
             return ['anything!'];
         }
     }

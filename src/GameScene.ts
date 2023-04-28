@@ -67,7 +67,8 @@ export default class GameScene extends Phaser.Scene {
 
         this.cats = [new Cat(this, 700, 150, 'orange', 1),
             new Cat(this, 700, 150, 'white', 1), 
-            new Cat(this, 700, 150, 'black', 2)
+            new Cat(this, 700, 150, 'black', 2),
+            new Cat(this, 700, 150, 'orangeWhite', 3)
         ];
         this.cats = this.cats.filter(cat => cat.level <= this.level);
 
@@ -118,41 +119,49 @@ export default class GameScene extends Phaser.Scene {
         this.myCounter.blackCoffee.length = 0;
       }
 
-    handleSendClick() {
-        if ((this.queue[0].wantedIngredients[0] === "peachTea" && this.myCounter.peachTea.length > 0 && this.myCounter.vanillaLatte.length === 0 && this.myCounter.blackCoffee.length === 0) ||
-            (this.queue[0].wantedIngredients[0] === "vanillaLatte" && this.myCounter.vanillaLatte.length > 0 && this.myCounter.peachTea.length === 0 && this.myCounter.blackCoffee.length === 0) ||
-            (this.queue[0].wantedIngredients[0] === "blackCoffee" && this.myCounter.blackCoffee.length > 0 && this.myCounter.peachTea.length === 0 && this.myCounter.vanillaLatte.length === 0)) {
+      handleSendClick() {
+        const wantedIngredients = this.queue[0].wantedIngredients;
+        const hasPeachTea = this.myCounter.peachTea.length > 0;
+        const hasVanillaLatte = this.myCounter.vanillaLatte.length > 0;
+        const hasBlackCoffee = this.myCounter.blackCoffee.length > 0;
+    
+        const isCorrectOrder =
+            (wantedIngredients.includes("peachTea") === hasPeachTea) &&
+            (wantedIngredients.includes("vanillaLatte") === hasVanillaLatte) &&
+            (wantedIngredients.includes("blackCoffee") === hasBlackCoffee);
+    
+        if (isCorrectOrder) {
             this.queue[0].setVisible(false);
             this.queue.shift();
             this.handleClearClick();
-            this.money+=10;
-            this.moneyCount.setText('Money: '+this.money);
+            this.money += 10;
+            this.moneyCount.setText('Money: ' + this.money);
             if (this.queue.length === 0) {
-
-                this.scene.start('winScene', {money: this.money, level: this.level});
+                this.scene.start('winScene', { money: this.money, level: this.level });
             } else {
                 this.queue[0].setVisible(true);
             }
-        }
-        else{
-          if(this.money>=2){
-            this.money-=2;
-            this.moneyCount.setText('Money: '+this.money);
-          }  
-          this.handleClearClick();
+        } else {
+            if (this.money >= 2) {
+                this.money -= 2;
+                this.moneyCount.setText('Money: ' + this.money);
+            }
+            this.handleClearClick();
             const tempText = this.add.text(920, 150, "Wrong! Try Again!", {
                 fontFamily: 'Arial',
                 fontSize: '32px',
                 color: '#FF0000',
-              });
-            
-              // Schedule the text to be destroyed after 'duration' milliseconds
-              this.time.delayedCall(1000, () => {
+            });
+    
+            // Schedule the text to be destroyed after 'duration' milliseconds
+            this.time.delayedCall(1000, () => {
                 tempText.destroy();
-              });
-
+            });
         }
-      }
+    }
+    
+    
+    
 
       handlePeachTeaClick() {
         const newPeachTea = this.add.image(700, 500, 'peachTea').setScale(0.25);
