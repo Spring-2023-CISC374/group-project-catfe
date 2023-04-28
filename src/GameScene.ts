@@ -65,10 +65,12 @@ export default class GameScene extends Phaser.Scene {
 
         this.levelCount = this.add.text(300, 48, 'Level: '+this.level, { fontSize: '32px', color: 'red'});
 
-        this.cats = [new Cat(this, 700, 150, 'orange'),
-            new Cat(this, 700, 150, 'white'), 
-            new Cat(this, 700, 150, 'black')
+        this.cats = [new Cat(this, 700, 150, 'orange', 1),
+            new Cat(this, 700, 150, 'white', 1), 
+            new Cat(this, 700, 150, 'black', 2)
         ];
+        this.cats = this.cats.filter(cat => cat.level <= this.level);
+
 
         while (this.cats.length > 0) {
             let rng: number = Math.floor(Math.random() * this.cats.length); // rng for which cat to send out
