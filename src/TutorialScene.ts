@@ -13,6 +13,7 @@ export default class TutorialScene extends Phaser.Scene {
     private vanilla: any;
     private tutorialMessage: any;
     private level: integer = 1;
+
     constructor(){
         super( {key: 'TutorialScene'});
     }
