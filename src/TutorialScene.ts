@@ -12,6 +12,8 @@ export default class TutorialScene extends Phaser.Scene {
     private oranges: any;
     private vanilla: any;
     private tutorialMessage: any;
+    private level: integer = 1;
+
     constructor(){
         super( {key: 'TutorialScene'});
     }
@@ -94,7 +96,7 @@ export default class TutorialScene extends Phaser.Scene {
         color: '#ffffff',
         backgroundColor: 'pink',
         padding: {x:20, y:20} });
-        this.background.setInteractive().on('pointerdown', () => {this.scene.start('GameScene')});
+        this.background.setInteractive().on('pointerdown', () => {this.scene.start('GameScene', {level: this.level})});
     }
         
 
