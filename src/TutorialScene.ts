@@ -9,8 +9,9 @@ export default class TutorialScene extends Phaser.Scene {
     private send: any;
     private cat?: Cat;
     private catType?: string;
-    private oranges: any;
-    private vanilla: any;
+    private peachTea: any;
+    private vanillaLatte: any;
+    private blackCoffee: any;
     private tutorialMessage: any;
     private level: integer = 1;
 
@@ -31,13 +32,16 @@ export default class TutorialScene extends Phaser.Scene {
         //set instructions
         this.instruction = this.add.image(150,180, "instruction1");
         //set ingredients
-        this.oranges = this.add.group();
-        this.vanilla = this.add.group();
+        this.peachTea = this.add.group();
+        this.vanillaLatte = this.add.group();
+        this.blackCoffee = this.add.group();
         //set their images and buttons
-        const orangesImage = this.add.image(300, 800, 'oranges')
-        this.oranges.add(orangesImage);
-        const vanillaImage = this.add.image(1100, 750, 'vanilla')
-        this.vanilla.add(vanillaImage);
+        const peachTeaImage = this.add.image(300, 800, 'peachTea');
+        this.peachTea.add(peachTeaImage);
+        const vanillaLatteImage = this.add.image(1100, 750, 'vanillaLatte');
+        this.vanillaLatte.add(vanillaLatteImage);
+        const blackCoffeeImage = this.add.image(750, 750, 'blackCoffee').setScale(.3);
+        this.blackCoffee.add(blackCoffeeImage);
         //clear button
         this.clear = this.add.image(1350, 100, 'clear');
         //send button
