@@ -18,8 +18,8 @@ export default class winScene extends Phaser.Scene{
         this.add.image(this.scale.width/2, this.scale.height/2, "winScene")
         this.moneyCount = this.add.text(300, 16, 'Money: '+data.money, { fontSize: '32px', color: 'red'});
         this.moneyCount = this.add.text(300, 48, 'Level: '+this.level, { fontSize: '32px', color: 'red'});
-        this.button=this.add.image(this.scale.width/2, this.scale.height/2, "oranges").setInteractive().on('pointerdown', ()=>this.backToGame());
-        this.button.setScale(0.8)
+        const nextButton = this.add.text(400, 400, 'Next Level', { fontSize: '32px', color: 'blue' }).setInteractive();
+        nextButton.on('pointerdown', () => this.backToGame());
     }
     backToGame(){
         this.level++;
