@@ -27,6 +27,11 @@ export default class GameScene extends Phaser.Scene {
         vanillaLatte: [],
         blackCoffee: [],
       };
+      private instructionKeys: string[] = [ //instruction sets that correspond to each level
+        'instruction1',
+        'instruction2',
+        'instruction3',
+      ];
 
   
     constructor(){
@@ -40,7 +45,8 @@ export default class GameScene extends Phaser.Scene {
         //set counter
         this.counter = this.add.image(700, 500, "counter");
         //set instructions
-        this.instruction = this.add.image(150, 180, "instruction1");
+        const instructionKey = this.instructionKeys[this.level - 1] || 'instruction3'; //sets proper instruction based on what current level is
+        this.instruction = this.add.image(150, 180, instructionKey);
         this.cup = this.add.image(700, 500, "cup");
         //set ingredients
         this.peachTea = this.add.group();
@@ -70,7 +76,7 @@ export default class GameScene extends Phaser.Scene {
             new Cat(this, 700, 150, 'black', 2),
             new Cat(this, 700, 150, 'orangeWhite', 3)
         ];
-        this.cats = this.cats.filter(cat => cat.level <= this.level);
+        this.cats = this.cats.filter(cat => cat.level <= this.level); // filters cats based on their level
 
 
         while (this.cats.length > 0) {
@@ -100,7 +106,7 @@ export default class GameScene extends Phaser.Scene {
         const keys: ('peachTea' | 'vanillaLatte'  | 'blackCoffee')[] = ['peachTea', 'vanillaLatte', 'blackCoffee'];
       
         keys.forEach((ingredientKey) => {
-          this.myCounter[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => {
+          this.myCounter[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => { //checks that each wanted ingredient is correct
             if (
               (ingredient.texture.key === 'peachTea' &&
                 (ingredient.x !== 300 || ingredient.y !== 800)) ||
