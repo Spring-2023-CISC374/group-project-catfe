@@ -4,16 +4,18 @@ export default class Cat extends Phaser.Physics.Arcade.Sprite {
     public accessories: string[];
     public clothing: string;
     public wantedIngredients: string[];
+    public level: number;
     //can add more variables as necessary; i.e. shirt, glasses, etc. and just add parameters to the constructor
 
 
-    constructor(scene, x: number, y: number, catType: string, acc: string[] = ['none'], clothes: string = 'none') {
+    constructor(scene, x: number, y: number, catType: string, level: number, acc: string[] = ['none'], clothes: string = 'none') {
         super(scene, x, y, catType.concat('Cat'));
 
         this.catType = catType;
         this.accessories = acc;
         this.clothing = clothes;
         this.wantedIngredients = this.determineOrder();
+        this.level = level;
 
         this.setScale(0.25);
 
