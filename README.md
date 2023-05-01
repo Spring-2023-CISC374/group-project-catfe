@@ -24,10 +24,13 @@ is over.
 - To see my work: 
 $ git checkout -b jill
 $ git fetch origin jill
-$ npm run start 
+$ npm run start
 
 Diya Shah:
 - Updated and added 3 new scenes: TitleScene, NarrativeScene, InstructionScene
 - Created the visuals and graphics for these scenes, so it would be more visually pleasing
 - Edited preloadscene as well
 
+Robin Moore:
+- Refactored the code to create Cat objects
+- Refactored the code to allow there to be multiple cats per level
