@@ -25,8 +25,8 @@ export default class Cat extends Phaser.Physics.Arcade.Sprite {
     }
 
     determineOrder() {
-        if (this.catType === 'orange') {
-            return ['peachTea'];
+        if (this.catType === 'tan') {
+            return ['caramelLatte'];
         } else if (this.catType === 'white') {
             return ['vanillaLatte'];
         } else if (this.catType === 'black') {
@@ -34,7 +34,7 @@ export default class Cat extends Phaser.Physics.Arcade.Sprite {
         
         } 
         else if (this.catType === 'orangeWhite') {
-            return ['peachTea', 'vanillaLatte'];
+            return ['caramelLatte', 'vanillaLatte'];
         }
         else {
             return ['anything!'];
