@@ -8,7 +8,7 @@ export default class GameScene extends Phaser.Scene {
     private clear: any;
     private send: any;
     private cup: any;
-    private peachTea: any;
+    private caramelLatte: any;
     private vanillaLatte: any;
     private blackCoffee: any;
     private money: integer = 0;
@@ -20,12 +20,12 @@ export default class GameScene extends Phaser.Scene {
     private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
 
-    private myCounter: { //myCounter, 2 arrays titled peachTea and vanillaLatte which hold the images that go onto the Counter
-        peachTea: Phaser.GameObjects.Image[];
+    private myCounter: { //myCounter, 2 arrays titled caramelLatte and vanillaLatte which hold the images that go onto the Counter
+        caramelLatte: Phaser.GameObjects.Image[];
         vanillaLatte: Phaser.GameObjects.Image[];
         blackCoffee: Phaser.GameObjects.Image[];
       } = {
-        peachTea: [],
+        caramelLatte: [],
         vanillaLatte: [],
         blackCoffee: [],
       };
@@ -60,13 +60,13 @@ export default class GameScene extends Phaser.Scene {
         this.instruction = this.add.image(150, 180, instructionKey);
         this.cup = this.add.image(700, 500, "cup");
         //set ingredients
-        this.peachTea = this.add.group();
+        this.caramelLatte = this.add.group();
         this.vanillaLatte = this.add.group();
         this.blackCoffee = this.add.group();
         //set their images and buttons
-        const peachTeaImage = this.add.image(300, 800, 'peachTea').setInteractive();
-        peachTeaImage.on('pointerdown', () => this.handlePeachTeaClick());
-        this.peachTea.add(peachTeaImage);
+        const caramelLatteImage = this.add.image(300, 800, 'caramelLatte').setInteractive().setScale(.3);
+        caramelLatteImage.on('pointerdown', () => this.handleCaramelClick());
+        this.caramelLatte.add(caramelLatteImage);
         const vanillaLatteImage = this.add.image(1100, 750, 'vanillaLatte').setInteractive();
         vanillaLatteImage.on('pointerdown', () => this.handleVanillaClick());
         this.vanillaLatte.add(vanillaLatteImage);
@@ -82,7 +82,7 @@ export default class GameScene extends Phaser.Scene {
 
         this.levelCount = this.add.text(300, 48, 'Level: '+this.level, { fontSize: '32px', color: 'red'});
 
-        this.cats = [new Cat(this, 700, 150, 'orange', 1),
+        this.cats = [new Cat(this, 700, 150, 'tan', 1),
             new Cat(this, 700, 150, 'white', 1), 
             new Cat(this, 700, 150, 'black', 2),
             new Cat(this, 700, 150, 'orangeWhite', 3)
@@ -114,12 +114,12 @@ export default class GameScene extends Phaser.Scene {
         */
     }
     handleClearClick() {
-        const keys: ('peachTea' | 'vanillaLatte'  | 'blackCoffee')[] = ['peachTea', 'vanillaLatte', 'blackCoffee'];
+        const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee'];
       
         keys.forEach((ingredientKey) => {
           this.myCounter[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => { //checks that each wanted ingredient is correct
             if (
-              (ingredient.texture.key === 'peachTea' &&
+              (ingredient.texture.key === 'caramelLatte' &&
                 (ingredient.x !== 300 || ingredient.y !== 800)) ||
               (ingredient.texture.key === 'vanillaLatte' &&
                 (ingredient.x !== 700 || ingredient.y !== 775)) ||
@@ -131,19 +131,19 @@ export default class GameScene extends Phaser.Scene {
           });
         });
       
-        this.myCounter.peachTea.length = 0;
+        this.myCounter.caramelLatte.length = 0;
         this.myCounter.vanillaLatte.length = 0;
         this.myCounter.blackCoffee.length = 0;
       }
 
       handleSendClick() {
         const wantedIngredients = this.queue[0].wantedIngredients;
-        const hasPeachTea = this.myCounter.peachTea.length > 0;
+        const hasCaramelLatte = this.myCounter.caramelLatte.length > 0;
         const hasVanillaLatte = this.myCounter.vanillaLatte.length > 0;
         const hasBlackCoffee = this.myCounter.blackCoffee.length > 0;
     
         const isCorrectOrder =
-            (wantedIngredients.includes("peachTea") === hasPeachTea) &&
+            (wantedIngredients.includes("caramelLatte") === hasCaramelLatte) &&
             (wantedIngredients.includes("vanillaLatte") === hasVanillaLatte) &&
             (wantedIngredients.includes("blackCoffee") === hasBlackCoffee);
     
@@ -185,9 +185,9 @@ export default class GameScene extends Phaser.Scene {
     
     
 
-      handlePeachTeaClick() {
-        const newPeachTea = this.add.image(700, 500, 'peachTea').setScale(0.25);
-        this.addToMyCounter(newPeachTea);
+      handleCaramelClick() {
+        const newCaramelLatte = this.add.image(700, 500, 'caramelLatte').setScale(0.05);
+        this.addToMyCounter(newCaramelLatte);
       }
     
       handleVanillaClick() {
@@ -202,11 +202,11 @@ export default class GameScene extends Phaser.Scene {
     
       addToMyCounter(image: Phaser.GameObjects.Image) {
         const key = image.texture.key;
-        if (key === 'peachTea' || key === 'vanillaLatte' || key === 'blackCoffee') {
+        if (key === 'caramelLatte' || key === 'vanillaLatte' || key === 'blackCoffee') {
           this.myCounter[key].push(image);
         }
       }
 
-    
-    
+
+      
 }
