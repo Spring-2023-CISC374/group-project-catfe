@@ -4,6 +4,7 @@ export default class GameScene extends Phaser.Scene {
     private background: any;
     private counter: any;
     private instruction: any;
+    private instIndex: number = 0;
     private clear: any;
     private send: any;
     private cup: any;
@@ -33,6 +34,14 @@ export default class GameScene extends Phaser.Scene {
         'instruction2',
         'instruction3',
       ];
+
+    private pseudocodeInstructions: string[] = [ // pseudocode instructions, taking the form of a more detailed booklet kind of thing
+        'basesPseudo',
+        'accessoriesPseudo',
+        'hatsPseudo',
+        'clothingPseudo'
+    ]
+    
 
   
     constructor(){
