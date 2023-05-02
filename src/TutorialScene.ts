@@ -56,9 +56,9 @@ export default class TutorialScene extends Phaser.Scene {
 
       
         //BEGIN TUTORIAL: 
-        this.tutorialMessage = this.add.text(0, 0, 'Welcome to Catfe!\nClick anywhere to continue.', { font: '32px Monospace',
-        color: '#ffffff',
-        backgroundColor: 'pink', 
+        this.tutorialMessage = this.add.text(0, 0, 'Welcome to Catfe!\nClick anywhere to continue.', { font: '30px Avenir',
+        color: 'white',
+        backgroundColor: '#4a2511', 
         padding: {x:32, y:32} });
         this.background.setInteractive().on('pointerdown', () => {this.secondTutorial();});
         
@@ -69,8 +69,8 @@ export default class TutorialScene extends Phaser.Scene {
         this.tutorialMessage.destroy();
         // Create and display the next tutorial message
         this.tutorialMessage = this.add.text(500, 250, 'Our adorable customers\nwill be here! Select the\ncorrect ingredient according\nto the side panel in the\ntop left corner!', 
-        { font: '20px Monospace', 
-        color: '#ffffff', backgroundColor: 'pink',
+        { font: '20px Avenir', 
+        color: 'white', backgroundColor: '#4a2511',
         padding: {x:20, y:20} });
         this.background.setInteractive().on('pointerdown', () => {this.thirdTutorial();});
     }
@@ -79,9 +79,9 @@ export default class TutorialScene extends Phaser.Scene {
         this.tutorialMessage.destroy();
         // Create and display the next tutorial message
         this.tutorialMessage = this.add.text(900, 50, 'Click here to send off\nyour purrfect creation\nor undo!', 
-        { font: '20px Monospace', 
-        color: '#ffffff',
-        backgroundColor: 'pink',
+        { font: '20px Avenir', 
+        color: 'white',
+        backgroundColor: '#4a2511',
         padding: {x:20, y:20} });
         this.background.setInteractive().on('pointerdown', () => {this.fourthTutorial();});
 
@@ -90,9 +90,9 @@ export default class TutorialScene extends Phaser.Scene {
     fourthTutorial() {
         this.tutorialMessage.destroy();
         // Create and display the next tutorial message
-        this.tutorialMessage = this.add.text(500, 300, "That's all there is to it! Click anywhere to get started!",{ font: '20px Monospace', 
-        color: '#ffffff',
-        backgroundColor: 'pink',
+        this.tutorialMessage = this.add.text(500, 300, "That's all there is to it! Click anywhere to get started!",{ font: '20px Avenir', 
+        color: 'white',
+        backgroundColor: '#4a2511',
         padding: {x:20, y:20} });
         this.background.setInteractive().on('pointerdown', () => {this.scene.start('GameScene')});
     }
