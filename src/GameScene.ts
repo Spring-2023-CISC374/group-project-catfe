@@ -4,7 +4,6 @@ export default class GameScene extends Phaser.Scene {
     private background: any;
     private counter: any;
     private instruction: any;
-    private instIndex: number = 0;
     private clear: any;
     private send: any;
     private cup: any;
@@ -16,6 +15,11 @@ export default class GameScene extends Phaser.Scene {
     private levelCount: any;
     private level: integer = 0;
     private final_level: integer = 3;
+    private instIndex: number = 0;
+    private nextButton?: Phaser.GameObjects.Image;
+    private prevButton?: Phaser.GameObjects.Image;
+    private flipButton?: Phaser.GameObjects.Image;
+    private instructionPseudo?: Phaser.GameObjects.Image;
 
     private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
@@ -96,22 +100,15 @@ export default class GameScene extends Phaser.Scene {
         }
         this.queue[0].setVisible(true);
 
-        /*if (this.rng === 1){ // rng option for orange cat
-            //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
+        this.flipButton = this.add.image(25, 25, 'flipButton').setInteractive();
+        this.flipButton.on('pointerdown', () => this.handleFlipClick());
+        this.prevButton = this.add.image(80, 25, 'leftButton').setInteractive();
+        this.prevButton.on('pointerdown', () => this.handlePrevClick());
+        this.nextButton = this.add.image(145, 25, 'rightButton').setInteractive();
+        this.nextButton.on('pointerdown', () => this.handleNextClick());
 
-            this.catType = 'orange';
-
-        }
-        else{
-
-            this.catType = 'white';
-
-        }
-
-        this.cat = new Cat(this, 700, 150, this.catType);
-
-        this.wantedIngredient = this.cat.wantedIngredients[0];
-        */
+        this.instructionPseudo = this.add.image(150, 180, this.pseudocodeInstructions[this.instIndex]);
+        this.instructionPseudo.setActive(false);
     }
     handleClearClick() {
         const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee'];
@@ -182,9 +179,6 @@ export default class GameScene extends Phaser.Scene {
         }
     }
     
-    
-    
-
       handleCaramelClick() {
         const newCaramelLatte = this.add.image(700, 500, 'caramelLatte').setScale(0.05);
         this.addToMyCounter(newCaramelLatte);
@@ -198,6 +192,27 @@ export default class GameScene extends Phaser.Scene {
       handleCoffeeClick() {
         const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.05);
         this.addToMyCounter(newCoffee);
+      }
+
+      handleFlipClick() {
+        this.instructionPseudo?.setActive(!this.instructionPseudo.active);
+        this.instruction.setActive(!this.instruction.active);
+      }
+
+      handlePrevClick() {
+        if(this.instIndex>0){
+          this.instructionPseudo?.destroy();
+          this.instIndex--;
+          this.instructionPseudo = this.add.image(100, 100, this.pseudocodeInstructions[this.instIndex]);
+        }
+      }
+
+      handleNextClick() {
+        if(this.instIndex<0){
+          this.instructionPseudo?.destroy();
+          this.instIndex++;
+          this.instructionPseudo = this.add.image(100, 100, this.pseudocodeInstructions[this.instIndex]);
+        }
       }
     
       addToMyCounter(image: Phaser.GameObjects.Image) {
