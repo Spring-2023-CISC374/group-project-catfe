@@ -9,9 +9,12 @@ export default class TutorialScene extends Phaser.Scene {
     private send: any;
     private cat?: Cat;
     private catType?: string;
-    private oranges: any;
-    private vanilla: any;
+    private caramelLatte: any;
+    private vanillaLatte: any;
+    private blackCoffee: any;
     private tutorialMessage: any;
+    private level: integer = 1;
+
     constructor(){
         super( {key: 'TutorialScene'});
     }
@@ -29,13 +32,16 @@ export default class TutorialScene extends Phaser.Scene {
         //set instructions
         this.instruction = this.add.image(150,180, "instruction1");
         //set ingredients
-        this.oranges = this.add.group();
-        this.vanilla = this.add.group();
+        this.caramelLatte = this.add.group();
+        this.vanillaLatte = this.add.group();
+        this.blackCoffee = this.add.group();
         //set their images and buttons
-        const orangesImage = this.add.image(300, 800, 'oranges')
-        this.oranges.add(orangesImage);
-        const vanillaImage = this.add.image(1100, 750, 'vanilla')
-        this.vanilla.add(vanillaImage);
+        const caramelLatteImage = this.add.image(300, 800, 'caramelLatte').setScale(.3);
+        this.caramelLatte.add(caramelLatteImage);
+        const vanillaLatteImage = this.add.image(1100, 750, 'vanillaLatte');
+        this.vanillaLatte.add(vanillaLatteImage);
+        const blackCoffeeImage = this.add.image(750, 750, 'blackCoffee').setScale(.3);
+        this.blackCoffee.add(blackCoffeeImage);
         //clear button
         this.clear = this.add.image(1350, 100, 'clear');
         //send button
@@ -52,8 +58,8 @@ export default class TutorialScene extends Phaser.Scene {
 
         }
 
-        this.cat = new Cat(this, 700, 150, this.catType);
-
+        this.cat = new Cat(this, 700, 150, this.catType, 1);
+        this.cat.setVisible(true);
       
         //BEGIN TUTORIAL: 
         this.tutorialMessage = this.add.text(0, 0, 'Welcome to Catfe!\nClick anywhere to continue.', { font: '30px Avenir',
@@ -94,7 +100,7 @@ export default class TutorialScene extends Phaser.Scene {
         color: 'white',
         backgroundColor: '#4a2511',
         padding: {x:20, y:20} });
-        this.background.setInteractive().on('pointerdown', () => {this.scene.start('GameScene')});
+        this.background.setInteractive().on('pointerdown', () => {this.scene.start('GameScene', {level: this.level, money: 0})});
     }
         
 

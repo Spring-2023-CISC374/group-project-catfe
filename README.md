@@ -7,6 +7,7 @@ Diya Shah: added new title scene, added new narrative scene, and added new instr
 
 Anthony Racioppo:
 - Set up initial code base for preloading, title screen, functions for handling submitting orders, base functionality of gameplay elements, ingredients, clear button, cat generation, validity check for orders
+- Set up Money System and passing money between scenes
 
 Emma Frampton:
 - Added abstracted BaseScene with detailed docstrings for future code references.
@@ -23,9 +24,13 @@ is over.
 - To see my work: 
 $ git checkout -b jill
 $ git fetch origin jill
-$ npm run start 
+$ npm run start
 
 Diya Shah:
 - Updated and added 3 new scenes: TitleScene, NarrativeScene, InstructionScene
 - Created the visuals and graphics for these scenes, so it would be more visually pleasing
 - Edited preloadscene as well
+
+Robin Moore:
+- Refactored the code to create Cat objects
+- Refactored the code to allow there to be multiple cats per level
