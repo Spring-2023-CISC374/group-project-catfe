@@ -82,9 +82,15 @@ export default class GameScene extends Phaser.Scene {
         //send button
         this.send = this.add.image(1350, 200, 'send').setInteractive().on('pointerdown', () => this.handleSendClick());
 
-        this.moneyCount = this.add.text(300, 16, 'Money: '+this.money, { fontSize: '32px', color: 'red'});
+        this.moneyCount = this.add.text(300, 16, 'Money: '+this.money, { font: '30px Avenir',
+        color: '#4a2511',
+        backgroundColor: 'white', 
+        padding: {x:10, y:10}});
 
-        this.levelCount = this.add.text(300, 48, 'Level: '+this.level, { fontSize: '32px', color: 'red'});
+        this.levelCount = this.add.text(300, 100, 'Level: '+this.level, { font: '30px Avenir',
+        color: '#4a2511',
+        backgroundColor: 'white', 
+        padding: {x:10, y:10}});
 
         this.cats = [new Cat(this, 700, 150, 'tan', 1),
             new Cat(this, 700, 150, 'white', 1), 
@@ -166,11 +172,11 @@ export default class GameScene extends Phaser.Scene {
                 this.moneyCount.setText('Money: ' + this.money);
             }
             this.handleClearClick();
-            const tempText = this.add.text(920, 150, "Wrong! Try Again!", {
-                fontFamily: 'Arial',
-                fontSize: '32px',
-                color: '#FF0000',
-            });
+            const tempText = this.add.text(920, 150, "Wrong! Try Again!", { font: '30px Avenir',
+            color: '#4a2511',
+            backgroundColor: 'white', 
+            padding: {x:20, y:20}}
+            );
     
             // Schedule the text to be destroyed after 'duration' milliseconds
             this.time.delayedCall(1000, () => {
