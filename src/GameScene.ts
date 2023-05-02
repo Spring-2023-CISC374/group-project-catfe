@@ -106,15 +106,16 @@ export default class GameScene extends Phaser.Scene {
         }
         this.queue[0].setVisible(true);
 
+        this.instructionPseudo = this.add.image(175, 180, this.pseudocodeInstructions[this.instIndex]);
+        this.instructionPseudo.setVisible(false);
+
         this.flipButton = this.add.image(25, 25, 'flipButton').setInteractive();
         this.flipButton.on('pointerdown', () => this.handleFlipClick());
-        this.prevButton = this.add.image(80, 25, 'leftButton').setInteractive();
+        this.prevButton = this.add.image(80, 25, 'leftArrow').setInteractive();
         this.prevButton.on('pointerdown', () => this.handlePrevClick());
-        this.nextButton = this.add.image(145, 25, 'rightButton').setInteractive();
+        this.nextButton = this.add.image(145, 25, 'rightArrow').setInteractive();
         this.nextButton.on('pointerdown', () => this.handleNextClick());
 
-        this.instructionPseudo = this.add.image(150, 180, this.pseudocodeInstructions[this.instIndex]);
-        this.instructionPseudo.setActive(false);
     }
     handleClearClick() {
         const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee'];
@@ -201,23 +202,22 @@ export default class GameScene extends Phaser.Scene {
       }
 
       handleFlipClick() {
-        this.instructionPseudo?.setActive(!this.instructionPseudo.active);
-        this.instruction.setActive(!this.instruction.active);
+        this.instructionPseudo?.setVisible(!this.instructionPseudo.visible);
+        this.instruction.setVisible(!this.instruction.visible);
       }
 
       handlePrevClick() {
         if(this.instIndex>0){
-          this.instructionPseudo?.destroy();
           this.instIndex--;
-          this.instructionPseudo = this.add.image(100, 100, this.pseudocodeInstructions[this.instIndex]);
+          this.instructionPseudo?.setTexture(this.pseudocodeInstructions[this.instIndex]);
         }
       }
 
       handleNextClick() {
-        if(this.instIndex<0){
-          this.instructionPseudo?.destroy();
+        if(this.instIndex<3){
           this.instIndex++;
-          this.instructionPseudo = this.add.image(100, 100, this.pseudocodeInstructions[this.instIndex]);
+          this.instructionPseudo?.setTexture(this.pseudocodeInstructions[this.instIndex]);
+          //this.instructionPseudo = this.add.image(100, 100, this.pseudocodeInstructions[this.instIndex]);
         }
       }
     
