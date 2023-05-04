@@ -7,11 +7,26 @@ export default class GameScene extends Phaser.Scene {
     private clear: any;
     private send: any;
     private cup: any;
+    //ingredients
     private caramelLatte: any;
     private vanillaLatte: any;
     private blackCoffee: any;
+    //milk
+    private milk: any;
+    private oatMilk: any;
+    private almondMilk: any;
+    //food
+    private cookie: any;
+    private muffin: any;
+    private cakepop: any;
+    //syrups
+    private lemonPump: any;
+    private raspberryPump: any;
+    private mintPump: any;
+    //money
     private money: integer = 0;
     private moneyCount: any;
+    //levels
     private levelCount: any;
     private level: integer = 0;
     private final_level: integer = 3;
@@ -23,10 +38,28 @@ export default class GameScene extends Phaser.Scene {
         caramelLatte: Phaser.GameObjects.Image[];
         vanillaLatte: Phaser.GameObjects.Image[];
         blackCoffee: Phaser.GameObjects.Image[];
+        milk: Phaser.GameObjects.Image[];
+        oatMilk: Phaser.GameObjects.Image[];
+        almondMilk: Phaser.GameObjects.Image[];
+        cookie: Phaser.GameObjects.Image[];
+        muffin: Phaser.GameObjects.Image[];
+        cakepop: Phaser.GameObjects.Image[];
+        lemonPump: Phaser.GameObjects.Image[];
+        raspberryPump: Phaser.GameObjects.Image[];
+        mintPump: Phaser.GameObjects.Image[];
       } = {
         caramelLatte: [],
         vanillaLatte: [],
         blackCoffee: [],
+        milk: [],
+        oatMilk: [],
+        almondMilk: [],
+        cookie: [],
+        muffin: [],
+        cakepop: [],
+        lemonPump: [],
+        raspberryPump: [],
+        mintPump: []
       };
       private instructionKeys: string[] = [ //instruction sets that correspond to each level
         'instruction1',
@@ -49,21 +82,58 @@ export default class GameScene extends Phaser.Scene {
         //set instructions
         const instructionKey = this.instructionKeys[this.level - 1] || 'instruction3'; //sets proper instruction based on what current level is
         this.instruction = this.add.image(150, 180, instructionKey);
-        this.cup = this.add.image(700, 500, "cup");
+        
         //set ingredients
         this.caramelLatte = this.add.group();
         this.vanillaLatte = this.add.group();
         this.blackCoffee = this.add.group();
+        this.milk = this.add.group();
+        this.oatMilk = this.add.group();
+        this.almondMilk = this.add.group();
+        this.cookie = this.add.group();
+        this.muffin = this.add.group();
+        this.cakepop = this.add.group();
+        this.lemonPump = this.add.group();
+        this.raspberryPump = this.add.group();
+        this.mintPump = this.add.group();
+
         //set their images and buttons
-        const caramelLatteImage = this.add.image(300, 800, 'caramelLatte').setInteractive().setScale(.3);
+        const caramelLatteImage = this.add.image(600, 700, 'caramelLatte').setInteractive().setScale(.25);
         caramelLatteImage.on('pointerdown', () => this.handleCaramelClick());
         this.caramelLatte.add(caramelLatteImage);
-        const vanillaLatteImage = this.add.image(1100, 750, 'vanillaLatte').setInteractive();
+        const vanillaLatteImage = this.add.image(900, 700, 'vanillaLatte').setInteractive().setScale(.2);
         vanillaLatteImage.on('pointerdown', () => this.handleVanillaClick());
         this.vanillaLatte.add(vanillaLatteImage);
-        const blackCoffeeImage = this.add.image(750, 750, 'blackCoffee').setInteractive().setScale(.3);
+        const blackCoffeeImage = this.add.image(750, 700, 'blackCoffee').setInteractive().setScale(.2);
         blackCoffeeImage.on('pointerdown', () => this.handleCoffeeClick());
         this.blackCoffee.add(blackCoffeeImage);
+        const milkImage = this.add.image(1450, 525, 'milk').setInteractive().setScale(.4);
+        milkImage.on('pointerdown', () => this.handleMilkClick());
+        this.milk.add(milkImage);
+        const oatMilkImage = this.add.image(1450, 638, 'oatMilk').setInteractive().setScale(.4);
+        oatMilkImage.on('pointerdown', () => this.handleOatMilkClick());
+        this.oatMilk.add(oatMilkImage);
+        const almondMilkImage = this.add.image(1440, 760, 'almondMilk').setInteractive().setScale(.42);
+        almondMilkImage.on('pointerdown', () => this.handleAlmondMilkClick());
+        this.almondMilk.add(almondMilkImage);
+        const cookieImage = this.add.image(100, 550, 'cookie').setInteractive().setScale(.3);
+        cookieImage.on('pointerdown', () => this.handleCookieClick());
+        this.cookie.add(cookieImage);       
+        const muffinImage = this.add.image(100, 675, 'muffin').setInteractive().setScale(.3);
+        muffinImage.on('pointerdown', () => this.handleMuffinClick());
+        this.muffin.add(muffinImage);
+        const cakepopImage = this.add.image(100, 800, 'cakepop').setInteractive().setScale(.3);
+        cakepopImage.on('pointerdown', () => this.handleCakepopClick());
+        this.cakepop.add(cakepopImage);
+        const lemonPumpImage = this.add.image(1100, 495, 'lemonPump').setInteractive().setScale(.38);
+        lemonPumpImage.on('pointerdown', () => this.handleLemonPumpClick());
+        this.lemonPump.add(lemonPumpImage);
+        const raspberryPumpImage = this.add.image(1200, 495, 'raspberryPump').setInteractive().setScale(.38);
+        raspberryPumpImage.on('pointerdown', () => this.handleRaspberryPumpClick());
+        this.raspberryPump.add(raspberryPumpImage);
+        const mintPumpImage = this.add.image(1300, 495, 'mintPump').setInteractive().setScale(.38);
+        cakepopImage.on('pointerdown', () => this.handleMintPumpClick());
+        this.mintPump.add(mintPumpImage);
         //clear button
         this.clear = this.add.image(1350, 100, 'clear').setInteractive().on('pointerdown', () => this.handleClearClick());
         //send button
@@ -79,13 +149,13 @@ export default class GameScene extends Phaser.Scene {
         backgroundColor: 'white', 
         padding: {x:10, y:10}});
 
-        this.cats = [new Cat(this, 700, 150, 'tan', 1),
-            new Cat(this, 700, 150, 'white', 1), 
-            new Cat(this, 700, 150, 'black', 2),
-            new Cat(this, 700, 150, 'orangeWhite', 3)
+        this.cats = [new Cat(this, 725, 390, 'tan', 1),
+            new Cat(this, 725, 390, 'white', 1), 
+            new Cat(this, 725, 390, 'black', 2),
+            new Cat(this, 725, 390, 'orangeWhite', 3)
         ];
         this.cats = this.cats.filter(cat => cat.level <= this.level); // filters cats based on their level
-
+        this.cup = this.add.image(750, 500, "cup").setScale(.25);
 
         while (this.cats.length > 0) {
             let rng: number = Math.floor(Math.random() * this.cats.length); // rng for which cat to send out
@@ -111,7 +181,7 @@ export default class GameScene extends Phaser.Scene {
         */
     }
     handleClearClick() {
-        const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee'];
+        const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee' | 'milk' | 'almondMilk' | 'oatMilk' | 'cookie' | 'muffin' | 'cakepop' | 'lemonPump' | 'mintPump' | 'raspberryPump')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee', 'milk', 'almondMilk', 'oatMilk', 'cookie', 'muffin', 'cakepop','lemonPump','mintPump', 'raspberryPump'];
       
         keys.forEach((ingredientKey) => {
           this.myCounter[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => { //checks that each wanted ingredient is correct
@@ -121,7 +191,7 @@ export default class GameScene extends Phaser.Scene {
               (ingredient.texture.key === 'vanillaLatte' &&
                 (ingredient.x !== 700 || ingredient.y !== 775)) ||
               (ingredient.texture.key === 'blackCoffee' &&
-                (ingredient.x !== 2000 || ingredient.y !== 750))
+                (ingredient.x !== 100 || ingredient.y !== 750))
             ) {
               ingredient.destroy();
             }
@@ -131,6 +201,15 @@ export default class GameScene extends Phaser.Scene {
         this.myCounter.caramelLatte.length = 0;
         this.myCounter.vanillaLatte.length = 0;
         this.myCounter.blackCoffee.length = 0;
+        this.myCounter.milk.length = 0;
+        this.myCounter.oatMilk.length = 0;
+        this.myCounter.almondMilk.length = 0;
+        this.myCounter.cookie.length = 0;
+        this.myCounter.muffin.length = 0;
+        this.myCounter.cakepop.length = 0;
+        this.myCounter.lemonPump.length = 0;
+        this.myCounter.raspberryPump.length = 0;
+        this.myCounter.mintPump.length = 0;
       }
 
       handleSendClick() {
@@ -138,11 +217,29 @@ export default class GameScene extends Phaser.Scene {
         const hasCaramelLatte = this.myCounter.caramelLatte.length > 0;
         const hasVanillaLatte = this.myCounter.vanillaLatte.length > 0;
         const hasBlackCoffee = this.myCounter.blackCoffee.length > 0;
+        const hasMilk = this.myCounter.milk.length > 0;
+        const hasOatMilk = this.myCounter.oatMilk.length > 0;
+        const hasAlmondMilk = this.myCounter.almondMilk.length > 0;
+        const hasCookie = this.myCounter.cookie.length > 0;
+        const hasMuffin = this.myCounter.muffin.length > 0;
+        const hasCakepop = this.myCounter.cakepop.length > 0;
+        const hasLemonPump = this.myCounter.lemonPump.length > 0;
+        const hasRaspberryPump = this.myCounter.raspberryPump.length > 0;
+        const hasMintPump = this.myCounter.mintPump.length > 0;
     
         const isCorrectOrder =
             (wantedIngredients.includes("caramelLatte") === hasCaramelLatte) &&
             (wantedIngredients.includes("vanillaLatte") === hasVanillaLatte) &&
-            (wantedIngredients.includes("blackCoffee") === hasBlackCoffee);
+            (wantedIngredients.includes("blackCoffee") === hasBlackCoffee) &&
+            (wantedIngredients.includes("milk") === hasMilk) &&
+            (wantedIngredients.includes("oatMilk") === hasOatMilk) &&
+            (wantedIngredients.includes("almondMilk") === hasAlmondMilk) &&
+            (wantedIngredients.includes("cookie") === hasCookie) &&
+            (wantedIngredients.includes("muffin") === hasMuffin) &&
+            (wantedIngredients.includes("cakepop") === hasCakepop) &&
+            (wantedIngredients.includes("lemonPump") === hasLemonPump) &&
+            (wantedIngredients.includes("mintPump") === hasMintPump) &&
+            (wantedIngredients.includes("raspberryPump") === hasRaspberryPump);
     
         if (isCorrectOrder) {
             this.queue[0].setVisible(false);
@@ -196,10 +293,48 @@ export default class GameScene extends Phaser.Scene {
         const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.05);
         this.addToMyCounter(newCoffee);
       }
-    
+      handleMilkClick() {
+        const newMilk = this.add.image(700, 400, 'milk').setScale(0.05);
+        this.addToMyCounter(newMilk);
+      }
+      handleOatMilkClick() {
+        const newOatMilk = this.add.image(700, 400, 'oatMilk').setScale(0.05);
+        this.addToMyCounter(newOatMilk);
+      }
+      handleAlmondMilkClick() {
+        const newAlmondMilk = this.add.image(700, 400, 'almondMilk').setScale(0.05);
+        this.addToMyCounter(newAlmondMilk);
+      }
+      handleCookieClick() {
+        const newCookie = this.add.image(700, 400, 'cookie').setScale(0.05);
+        this.addToMyCounter(newCookie);
+      }
+      handleMuffinClick() {
+        const newMuffin = this.add.image(700, 400, 'muffin').setScale(0.05);
+        this.addToMyCounter(newMuffin);
+      }
+      handleCakepopClick() {
+        const newCakepop = this.add.image(700, 400, 'cakepop').setScale(0.05);
+        this.addToMyCounter(newCakepop);
+      }
+      handleLemonPumpClick() {
+        const newLemonPump = this.add.image(700, 400, 'lemonPump').setScale(0.05);
+        this.addToMyCounter(newLemonPump);
+      }
+      handleRaspberryPumpClick() {
+        const newRaspberryPump = this.add.image(700, 400, 'raspberryPump').setScale(0.05);
+        this.addToMyCounter(newRaspberryPump);
+      }
+      handleMintPumpClick() {
+        const newMintPump = this.add.image(700, 400, 'mintPump').setScale(0.05);
+        this.addToMyCounter(newMintPump);
+      }
+
       addToMyCounter(image: Phaser.GameObjects.Image) {
         const key = image.texture.key;
-        if (key === 'caramelLatte' || key === 'vanillaLatte' || key === 'blackCoffee') {
+        if (key === 'caramelLatte' || key === 'vanillaLatte' || key === 'blackCoffee' || key === 'milk'||
+        key === 'oatMilk' || key === 'almondMilk' || key === 'cookie' || key === 'muffin' || key === 'cakepop'
+        || key === 'lemonPump' || key === 'raspberryPump' || key === 'mintPump') {
           this.myCounter[key].push(image);
         }
       }

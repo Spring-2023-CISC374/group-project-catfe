@@ -28,7 +28,7 @@ export default class TutorialScene extends Phaser.Scene {
         //set counter
         this.counter = this.add.image(700, 500, "counter");
         //set cup
-        this.cup = this.add.image(700,500, "cup");
+        this.cup = this.add.image(700,500, "cup").setScale(.25);
         //set instructions
         this.instruction = this.add.image(150,180, "instruction1");
         //set ingredients
