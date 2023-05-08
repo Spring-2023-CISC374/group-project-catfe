@@ -9,7 +9,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 
 	preload() {
 		this.load.image('titleScreen', 'assets/catfe_title.png'); //created new title/preload scene - DIYA
-		this.load.image('background', 'assets/Background.png');
+		this.load.image('background', 'assets/background.png');
 		this.load.image('blackCat', 'assets/blackCat.png');
 		this.load.image('tanCat', 'assets/orangeCat.png');
 		this.load.image('whiteCat', 'assets/whiteCat.png');
