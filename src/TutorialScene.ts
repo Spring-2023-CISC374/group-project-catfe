@@ -66,7 +66,7 @@ export default class TutorialScene extends Phaser.Scene {
         color: 'white',
         backgroundColor: '#4a2511', 
         padding: {x:32, y:32} });
-        this.background.setInteractive().on('pointerdown', () => {this.secondTutorial();});
+        this.background.setInteractive().on('pointerdown', () => this.secondTutorial());
         
     
     }
