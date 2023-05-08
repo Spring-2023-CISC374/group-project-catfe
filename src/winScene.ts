@@ -2,9 +2,9 @@ import Phaser from 'phaser'
 
 export default class winScene extends Phaser.Scene{
 
-    private button: any;
-    private moneyCount: any;
-    private levelCount: any;
+    public button: any;
+    public moneyCount: any;
+    public levelCount: any;
     private level: integer = 0;
     private money: integer = 0;
 
