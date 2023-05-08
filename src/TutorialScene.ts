@@ -1,12 +1,12 @@
 import Cat from "./objects/Cat";
 
 export default class TutorialScene extends Phaser.Scene {
-    private background: any;
-    private counter: any;
-    private cup: any;
-    private instruction: any;
-    private clear: any;
-    private send: any;
+    public background: any;
+    public counter: any;
+    public instruction: any;
+    public clear: any;
+    public send: any;
+    public cup: any;
     private cat?: Cat;
     private catType?: string;
     private caramelLatte: any;

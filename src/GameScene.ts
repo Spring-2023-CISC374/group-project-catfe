@@ -1,12 +1,12 @@
 import Cat from "./objects/Cat";
 
 export default class GameScene extends Phaser.Scene {
-    private background: any;
-    private counter: any;
-    private instruction: any;
-    private clear: any;
-    private send: any;
-    private cup: any;
+    public background: any;
+    public counter: any;
+    public instruction: any;
+    public clear: any;
+    public send: any;
+    public cup: any;
     //ingredients
     private caramelLatte: any;
     private vanillaLatte: any;
@@ -27,7 +27,7 @@ export default class GameScene extends Phaser.Scene {
     private money: integer = 0;
     private moneyCount: any;
     //levels
-    private levelCount: any;
+    public levelCount: any;
     private level: integer = 0;
     private final_level: integer = 3;
 
@@ -158,7 +158,7 @@ export default class GameScene extends Phaser.Scene {
         this.cup = this.add.image(750, 500, "cup").setScale(.25);
 
         while (this.cats.length > 0) {
-            let rng: number = Math.floor(Math.random() * this.cats.length); // rng for which cat to send out
+            const rng: number = Math.floor(Math.random() * this.cats.length); // rng for which cat to send out
             this.queue.push(this.cats.splice(rng, 1)[0]);
         }
         this.queue[0].setVisible(true);
