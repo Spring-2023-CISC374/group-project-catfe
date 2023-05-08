@@ -30,6 +30,9 @@ Diya Shah:
 - Updated and added 3 new scenes: TitleScene, NarrativeScene, InstructionScene
 - Created the visuals and graphics for these scenes, so it would be more visually pleasing
 - Edited preloadscene as well
+- Fixed tutorial scene aesthetics, by add css elements 
+- Added and created bacground assets for final win scene and movint to next level scene
+- Updated aesthetics for Money, Level, Replay, and final scene buttons
 
 Robin Moore:
 - Refactored the code to create Cat objects
