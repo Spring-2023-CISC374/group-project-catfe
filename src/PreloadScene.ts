@@ -15,9 +15,31 @@ export default class HelloWorldScene extends Phaser.Scene {
 		//Background
 		this.load.image('background', 'assets/Background.png');
 		//Cats
-		this.load.image('blackCat', 'assets/cats/L1-B.PNG');
-		this.load.image('tanCat', 'assets/cats/L1-T.PNG');
-		this.load.image('whiteCat', 'assets/cats/L1-W.png');
+			//L1
+		this.load.image('l1b', 'assets/cats/L1-B.PNG');
+		this.load.image('l1t', 'assets/cats/L1-T.PNG');
+		this.load.image('l1w', 'assets/cats/L1-W.png');
+			//L2
+		this.load.image('l2b1', 'assets/cats/L2-B1.PNG');
+		this.load.image('l2b2', 'assets/cats/L2-B2.PNG');
+		this.load.image('l2t1', 'assets/cats/L2-T1.png');
+		this.load.image('l2t2', 'assets/cats/L2-T2.PNG');
+		this.load.image('l2w1', 'assets/cats/L2-W1.PNG');
+		this.load.image('l2w2', 'assets/cats/L2-W2.png');
+			//L3
+		this.load.image('l3b1', 'assets/cats/L3-B1.PNG');
+		this.load.image('l3b2', 'assets/cats/L3-B2.PNG');
+		this.load.image('l3t1', 'assets/cats/L3-T1.png');
+		this.load.image('l3t2', 'assets/cats/L3-T2.PNG');
+		this.load.image('l3w1', 'assets/cats/L3-W1.PNG');
+		this.load.image('l3w2', 'assets/cats/L3-W2.png');
+			//L4
+		this.load.image('l4b1', 'assets/cats/L4-B1.PNG');
+		this.load.image('l4b2', 'assets/cats/L4-B2.PNG');
+		this.load.image('l4t1', 'assets/cats/L4-T1.PNG');
+		this.load.image('l4w2', 'assets/cats/L4-W2.PNG');
+		
+		//Cup
 		this.load.image('cup', 'assets/cup.png');
 		// ingredients
 		this.load.image('caramelLatte', 'assets/caramel.png');

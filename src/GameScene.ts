@@ -31,7 +31,7 @@ export default class GameScene extends Phaser.Scene {
     //levels
     public levelCount: any;
     private level: integer = 0;
-    private final_level: integer = 3;
+    private final_level: integer = 4;
     private instIndex = 0;
     private nextButton?: Phaser.GameObjects.Image;
     private prevButton?: Phaser.GameObjects.Image;
@@ -94,10 +94,26 @@ export default class GameScene extends Phaser.Scene {
         this.wall = this.add.image(this.scale.width/2, this.scale.height/2, "wall");
 
         //DON'T MOVE! needs to stay here so that the countertop is brought forward and cats are behind it 
-        this.cats = [new Cat(this, 725, 390, 'tan', 1),
-        new Cat(this, 725, 390, 'white', 1), 
-        new Cat(this, 725, 390, 'black', 2),
-        new Cat(this, 725, 390, 'orangeWhite', 3)
+        this.cats = [new Cat(this, 725, 390, 'l1b', 1),
+        new Cat(this, 725, 390, 'l1t', 1), //Put the white cat far down to test if it doesn't show up(it doesn't, it's behind counter)
+        new Cat(this, 725, 390, 'l1w', 1),
+        new Cat(this, 725, 390, 'l2b1', 2),
+        new Cat(this, 725, 390, 'l2b2', 2),
+        new Cat(this, 725, 390, 'l2t1', 2),
+        new Cat(this, 725, 390, 'l2t2', 2),
+        new Cat(this, 725, 390, 'l2w1', 2),
+        new Cat(this, 725, 390, 'l2w2', 2),
+        new Cat(this, 725, 390, 'l3b1', 3),
+        new Cat(this, 725, 390, 'l3b2', 3),
+        new Cat(this, 725, 390, 'l3t1', 3),
+        new Cat(this, 725, 390, 'l3t2', 3),
+        new Cat(this, 725, 390, 'l3w1', 3),
+        new Cat(this, 725, 390, 'l3w2', 3),
+        new Cat(this, 725, 390, 'l4b1', 4),
+        new Cat(this, 725, 390, 'l4b2', 4),
+        new Cat(this, 725, 390, 'l4t1', 4),
+        new Cat(this, 725, 390, 'l4w1', 4),
+
     ];
       // Don't move the countertop either :)
         this.countertop = this.add.image(this.scale.width/2, this.scale.height/2, "countertop");
@@ -293,7 +309,7 @@ export default class GameScene extends Phaser.Scene {
       }
     
       handleVanillaClick() {
-        const newVanilla = this.add.image(700, 400, 'vanillaLatte').setScale(0.35);
+        const newVanilla = this.add.image(700, 400, 'vanillaLatte').setScale(0.15);
         this.addToMyCounter(newVanilla);
       }
 
