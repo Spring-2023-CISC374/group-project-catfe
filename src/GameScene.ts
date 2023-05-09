@@ -2,6 +2,8 @@ import Cat from "./objects/Cat";
 
 export default class GameScene extends Phaser.Scene {
     public background: any;
+    public wall: any;
+    public countertop: any;
     public counter: any;
     public instruction: any;
     public clear: any;
@@ -30,7 +32,7 @@ export default class GameScene extends Phaser.Scene {
     public levelCount: any;
     private level: integer = 0;
     private final_level: integer = 3;
-    private instIndex: number = 0;
+    private instIndex = 0;
     private nextButton?: Phaser.GameObjects.Image;
     private prevButton?: Phaser.GameObjects.Image;
     private flipButton?: Phaser.GameObjects.Image;
@@ -88,8 +90,18 @@ export default class GameScene extends Phaser.Scene {
     create(data: {level: integer, money: integer}){
         this.level = data.level;
         this.money = data.money;
-        //set background
-        this.background = this.add.image(this.scale.width/2, this.scale.height/2, "background");
+        //set wall and counter
+        this.wall = this.add.image(this.scale.width/2, this.scale.height/2, "wall");
+
+        //DON'T MOVE! needs to stay here so that the countertop is brought forward and cats are behind it 
+        this.cats = [new Cat(this, 725, 390, 'tan', 1),
+        new Cat(this, 725, 390, 'white', 1), //Put the white cat far down to test if it doesn't show up(it doesn't, it's behind counter)
+        new Cat(this, 725, 390, 'black', 2),
+        new Cat(this, 725, 390, 'orangeWhite', 3)
+    ];
+      // Don't move the countertop either :)
+        this.countertop = this.add.image(this.scale.width/2, this.scale.height/2, "countertop");
+
         //set counter
         this.counter = this.add.image(700, 500, "counter");
         //set instructions
@@ -129,10 +141,10 @@ export default class GameScene extends Phaser.Scene {
         const almondMilkImage = this.add.image(1440, 760, 'almondMilk').setInteractive().setScale(.42);
         almondMilkImage.on('pointerdown', () => this.handleAlmondMilkClick());
         this.almondMilk.add(almondMilkImage);
-        const cookieImage = this.add.image(100, 550, 'cookie').setInteractive().setScale(.3);
+        const cookieImage = this.add.image(100, 525, 'cookie').setInteractive().setScale(.3);
         cookieImage.on('pointerdown', () => this.handleCookieClick());
         this.cookie.add(cookieImage);       
-        const muffinImage = this.add.image(100, 675, 'muffin').setInteractive().setScale(.3);
+        const muffinImage = this.add.image(100, 645, 'muffin').setInteractive().setScale(.3);
         muffinImage.on('pointerdown', () => this.handleMuffinClick());
         this.muffin.add(muffinImage);
         const cakepopImage = this.add.image(100, 800, 'cakepop').setInteractive().setScale(.3);
@@ -145,7 +157,7 @@ export default class GameScene extends Phaser.Scene {
         raspberryPumpImage.on('pointerdown', () => this.handleRaspberryPumpClick());
         this.raspberryPump.add(raspberryPumpImage);
         const mintPumpImage = this.add.image(1300, 495, 'mintPump').setInteractive().setScale(.38);
-        cakepopImage.on('pointerdown', () => this.handleMintPumpClick());
+        mintPumpImage.on('pointerdown', () => this.handleMintPumpClick());
         this.mintPump.add(mintPumpImage);
         //clear button
         this.clear = this.add.image(1350, 100, 'clear').setInteractive().on('pointerdown', () => this.handleClearClick());
@@ -162,11 +174,6 @@ export default class GameScene extends Phaser.Scene {
         backgroundColor: 'white', 
         padding: {x:10, y:10}});
 
-        this.cats = [new Cat(this, 725, 390, 'tan', 1),
-            new Cat(this, 725, 390, 'white', 1), 
-            new Cat(this, 725, 390, 'black', 2),
-            new Cat(this, 725, 390, 'orangeWhite', 3)
-        ];
         this.cats = this.cats.filter(cat => cat.level <= this.level); // filters cats based on their level
         this.cup = this.add.image(750, 500, "cup").setScale(.25);
 
@@ -188,36 +195,27 @@ export default class GameScene extends Phaser.Scene {
 
     }
     handleClearClick() {
-        const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee' | 'milk' | 'almondMilk' | 'oatMilk' | 'cookie' | 'muffin' | 'cakepop' | 'lemonPump' | 'mintPump' | 'raspberryPump')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee', 'milk', 'almondMilk', 'oatMilk', 'cookie', 'muffin', 'cakepop','lemonPump','mintPump', 'raspberryPump'];
+      const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee' | 'milk' | 'almondMilk' | 'oatMilk' | 'cookie' | 'muffin' | 'cakepop' | 'lemonPump' | 'mintPump' | 'raspberryPump')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee', 'milk', 'almondMilk', 'oatMilk', 'cookie', 'muffin', 'cakepop','lemonPump','mintPump', 'raspberryPump'];
       
-        keys.forEach((ingredientKey) => {
-          this.myCounter[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => { //checks that each wanted ingredient is correct
-            if (
-              (ingredient.texture.key === 'caramelLatte' &&
-                (ingredient.x !== 300 || ingredient.y !== 800)) ||
-              (ingredient.texture.key === 'vanillaLatte' &&
-                (ingredient.x !== 700 || ingredient.y !== 775)) ||
-              (ingredient.texture.key === 'blackCoffee' &&
-                (ingredient.x !== 100 || ingredient.y !== 750))
-            ) {
+      keys.forEach((ingredientKey) => {
+          this.myCounter[ingredientKey].forEach((ingredient: Phaser.GameObjects.Image) => { 
               ingredient.destroy();
-            }
           });
-        });
+      });
       
-        this.myCounter.caramelLatte.length = 0;
-        this.myCounter.vanillaLatte.length = 0;
-        this.myCounter.blackCoffee.length = 0;
-        this.myCounter.milk.length = 0;
-        this.myCounter.oatMilk.length = 0;
-        this.myCounter.almondMilk.length = 0;
-        this.myCounter.cookie.length = 0;
-        this.myCounter.muffin.length = 0;
-        this.myCounter.cakepop.length = 0;
-        this.myCounter.lemonPump.length = 0;
-        this.myCounter.raspberryPump.length = 0;
-        this.myCounter.mintPump.length = 0;
-      }
+      this.myCounter.caramelLatte.length = 0;
+      this.myCounter.vanillaLatte.length = 0;
+      this.myCounter.blackCoffee.length = 0;
+      this.myCounter.milk.length = 0;
+      this.myCounter.oatMilk.length = 0;
+      this.myCounter.almondMilk.length = 0;
+      this.myCounter.cookie.length = 0;
+      this.myCounter.muffin.length = 0;
+      this.myCounter.cakepop.length = 0;
+      this.myCounter.lemonPump.length = 0;
+      this.myCounter.raspberryPump.length = 0;
+      this.myCounter.mintPump.length = 0;
+  }
 
       handleSendClick() {
         const wantedIngredients = this.queue[0].wantedIngredients;
@@ -319,50 +317,52 @@ export default class GameScene extends Phaser.Scene {
       }
     
       handleMilkClick() {
-        const newMilk = this.add.image(700, 400, 'milk').setScale(0.05);
+        const newMilk = this.add.image(700, 400, 'milk').setScale(0.175);
         this.addToMyCounter(newMilk);
       }
       handleOatMilkClick() {
-        const newOatMilk = this.add.image(700, 400, 'oatMilk').setScale(0.05);
+        const newOatMilk = this.add.image(700, 400, 'oatMilk').setScale(0.175);
         this.addToMyCounter(newOatMilk);
       }
       handleAlmondMilkClick() {
-        const newAlmondMilk = this.add.image(700, 400, 'almondMilk').setScale(0.05);
+        const newAlmondMilk = this.add.image(700, 400, 'almondMilk').setScale(0.175);
         this.addToMyCounter(newAlmondMilk);
       }
       handleCookieClick() {
-        const newCookie = this.add.image(700, 400, 'cookie').setScale(0.05);
+        const newCookie = this.add.image(700, 400, 'cookie').setScale(0.1);
         this.addToMyCounter(newCookie);
       }
       handleMuffinClick() {
-        const newMuffin = this.add.image(700, 400, 'muffin').setScale(0.05);
+        const newMuffin = this.add.image(700, 400, 'muffin').setScale(0.1);
         this.addToMyCounter(newMuffin);
       }
       handleCakepopClick() {
-        const newCakepop = this.add.image(700, 400, 'cakepop').setScale(0.05);
+        const newCakepop = this.add.image(700, 400, 'cakepop').setScale(0.1);
         this.addToMyCounter(newCakepop);
       }
       handleLemonPumpClick() {
-        const newLemonPump = this.add.image(700, 400, 'lemonPump').setScale(0.05);
+        const newLemonPump = this.add.image(700, 400, 'lemonPump').setScale(0.1);
         this.addToMyCounter(newLemonPump);
       }
       handleRaspberryPumpClick() {
-        const newRaspberryPump = this.add.image(700, 400, 'raspberryPump').setScale(0.05);
+        const newRaspberryPump = this.add.image(700, 400, 'raspberryPump').setScale(0.1);
         this.addToMyCounter(newRaspberryPump);
       }
       handleMintPumpClick() {
-        const newMintPump = this.add.image(700, 400, 'mintPump').setScale(0.05);
+        const newMintPump = this.add.image(700, 400, 'mintPump').setScale(0.1);
         this.addToMyCounter(newMintPump);
-      }
+    }
 
-      addToMyCounter(image: Phaser.GameObjects.Image) {
-        const key = image.texture.key;
-        if (key === 'caramelLatte' || key === 'vanillaLatte' || key === 'blackCoffee' || key === 'milk'||
-        key === 'oatMilk' || key === 'almondMilk' || key === 'cookie' || key === 'muffin' || key === 'cakepop'
-        || key === 'lemonPump' || key === 'raspberryPump' || key === 'mintPump') {
-          this.myCounter[key].push(image);
-        }
+    addToMyCounter(image: Phaser.GameObjects.Image) {
+      const key = image.texture.key;
+      console.log('Adding to counter:', key);  // Debug line
+      if (key === 'caramelLatte' || key === 'vanillaLatte' || key === 'blackCoffee' || key === 'milk'||
+      key === 'oatMilk' || key === 'almondMilk' || key === 'cookie' || key === 'muffin' || key === 'cakepop'
+      || key === 'lemonPump' || key === 'raspberryPump' || key === 'mintPump') {
+        this.myCounter[key].push(image);
       }
+    }
+  
 
 
       
