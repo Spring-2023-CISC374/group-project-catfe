@@ -122,7 +122,7 @@ export default class GameScene extends Phaser.Scene {
         this.counter = this.add.image(700, 500, "counter");
         //set instructions
         const instructionKey = this.instructionKeys[this.level - 1] || 'instruction3'; //sets proper instruction based on what current level is
-        this.instruction = this.add.image(150, 180, instructionKey);
+        this.instruction = this.add.image(230, 230, instructionKey).setScale(.55);
         
         //set ingredients
         this.caramelLatte = this.add.group();
@@ -186,12 +186,12 @@ export default class GameScene extends Phaser.Scene {
         backgroundColor: '#4a2511', 
         padding: {x:20, y:20} }).setInteractive().on('pointerdown', () => this.handleSendClick());
 
-        this.moneyCount = this.add.text(300, 16, 'Money: '+this.money, { font: '30px Avenir',
+        this.moneyCount = this.add.text(500, 16, 'Money: '+this.money, { font: '30px Avenir',
         color: '#4a2511',
         backgroundColor: 'white', 
         padding: {x:10, y:10}});
 
-        this.levelCount = this.add.text(300, 100, 'Level: '+this.level, { font: '30px Avenir',
+        this.levelCount = this.add.text(500, 100, 'Level: '+this.level, { font: '30px Avenir',
         color: '#4a2511',
         backgroundColor: 'white', 
         padding: {x:10, y:10}});

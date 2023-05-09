@@ -20,24 +20,24 @@ export default class HelloWorldScene extends Phaser.Scene {
 		this.load.image('l1t', 'assets/cats/L1-T.PNG');
 		this.load.image('l1w', 'assets/cats/L1-W.png');
 			//L2
-		this.load.image('l2b1', 'assets/cats/L2-B1.PNG');
-		this.load.image('l2b2', 'assets/cats/L2-B2.PNG');
+		this.load.image('l2b1', 'assets/cats/L2-B1.png');
+		this.load.image('l2b2', 'assets/cats/L2-B2.png');
 		this.load.image('l2t1', 'assets/cats/L2-T1.png');
-		this.load.image('l2t2', 'assets/cats/L2-T2.PNG');
-		this.load.image('l2w1', 'assets/cats/L2-W1.PNG');
+		this.load.image('l2t2', 'assets/cats/L2-T2.png');
+		this.load.image('l2w1', 'assets/cats/L2-W1.png');
 		this.load.image('l2w2', 'assets/cats/L2-W2.png');
 			//L3
-		this.load.image('l3b1', 'assets/cats/L3-B1.PNG');
-		this.load.image('l3b2', 'assets/cats/L3-B2.PNG');
+		this.load.image('l3b1', 'assets/cats/L3-B1.png');
+		this.load.image('l3b2', 'assets/cats/L3-B2.png');
 		this.load.image('l3t1', 'assets/cats/L3-T1.png');
-		this.load.image('l3t2', 'assets/cats/L3-T2.PNG');
-		this.load.image('l3w1', 'assets/cats/L3-W1.PNG');
+		this.load.image('l3t2', 'assets/cats/L3-T2.png');
+		this.load.image('l3w1', 'assets/cats/L3-W1.png');
 		this.load.image('l3w2', 'assets/cats/L3-W2.png');
 			//L4
-		this.load.image('l4b1', 'assets/cats/L4-B1.PNG');
-		this.load.image('l4b2', 'assets/cats/L4-B2.PNG');
-		this.load.image('l4t1', 'assets/cats/L4-T1.PNG');
-		this.load.image('l4w2', 'assets/cats/L4-W2.PNG');
+		this.load.image('l4b1', 'assets/cats/L4-B1.png');
+		this.load.image('l4b2', 'assets/cats/L4-B2.png');
+		this.load.image('l4t1', 'assets/cats/L4-T1.png');
+		this.load.image('l4w2', 'assets/cats/L4-W2.png');
 		
 		//Cup
 		this.load.image('cup', 'assets/cup.png');
@@ -61,6 +61,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 		this.load.image('instruction1', 'assets/instruction1.png');
 		this.load.image('instruction2', 'assets/instruction2.png');
 		this.load.image('instruction3', 'assets/instruction3.png');
+		this.load.image('instruction4', 'assets/instruction4.png');
 		this.load.image('clear', 'assets/clear.png');
 		this.load.image('send', 'assets/send.png');
 		this.load.image('winScene', 'assets/winScreen.png');
