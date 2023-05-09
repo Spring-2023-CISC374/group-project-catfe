@@ -159,17 +159,16 @@ export default class GameScene extends Phaser.Scene {
         const mintPumpImage = this.add.image(1300, 495, 'mintPump').setInteractive().setScale(.38);
         mintPumpImage.on('pointerdown', () => this.handleMintPumpClick());
         this.mintPump.add(mintPumpImage);
-
         //clear button
         this.clear =this.add.text(1350, 100, 'Clear', { font: '30px Avenir',
         color: 'white',
         backgroundColor: '#4a2511', 
-        padding: {x:20, y:20} });
+        padding: {x:20, y:20} }).setInteractive().on('pointerdown', () => this.handleClearClick());
         //send button
         this.send = this.add.text(1350, 200, 'Send', { font: '30px Avenir',
         color: 'white',
         backgroundColor: '#4a2511', 
-        padding: {x:20, y:20} });
+        padding: {x:20, y:20} }).setInteractive().on('pointerdown', () => this.handleSendClick());
 
         this.moneyCount = this.add.text(300, 16, 'Money: '+this.money, { font: '30px Avenir',
         color: '#4a2511',
