@@ -15,9 +15,9 @@ export default class HelloWorldScene extends Phaser.Scene {
 		//Background
 		this.load.image('background', 'assets/Background.png');
 		//Cats
-		this.load.image('blackCat', 'assets/cats/black.PNG');
-		this.load.image('tanCat', 'assets/cats/beige.PNG');
-		this.load.image('whiteCat', 'assets/cats/White.png');
+		this.load.image('blackCat', 'assets/cats/L1-B.PNG');
+		this.load.image('tanCat', 'assets/cats/L1-T.PNG');
+		this.load.image('whiteCat', 'assets/cats/L1-W.png');
 		this.load.image('cup', 'assets/cup.png');
 		// ingredients
 		this.load.image('caramelLatte', 'assets/caramel.png');
