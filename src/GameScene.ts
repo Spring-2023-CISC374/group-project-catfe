@@ -30,7 +30,7 @@ export default class GameScene extends Phaser.Scene {
     public levelCount: any;
     private level: integer = 0;
     private final_level: integer = 3;
-    private instIndex: number = 0;
+    private instIndex = 0;
     private nextButton?: Phaser.GameObjects.Image;
     private prevButton?: Phaser.GameObjects.Image;
     private flipButton?: Phaser.GameObjects.Image;
