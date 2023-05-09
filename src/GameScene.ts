@@ -82,7 +82,7 @@ export default class GameScene extends Phaser.Scene {
 
         //DON'T MOVE! needs to stay here so that the countertop is brought forward and cats are behind it 
         this.cats = [new Cat(this, 725, 390, 'tan', 1),
-        new Cat(this, 725, 800, 'white', 1), 
+        new Cat(this, 725, 800, 'white', 1), //Put the white cat far down to test if it doesn't show up(it doesn't, it's behind counter)
         new Cat(this, 725, 390, 'black', 2),
         new Cat(this, 725, 390, 'orangeWhite', 3)
     ];
