@@ -4,7 +4,7 @@ export default class TutorialScene extends Phaser.Scene {
     public instruction: any;
     public clear: any;
     public send: any;
-    private level: integer = 0;
+    private level: integer = 1;
     public cup: Phaser.GameObjects.Group;
     private whiteCat: Phaser.GameObjects.Group;
     private caramelLatte: any;
@@ -32,16 +32,18 @@ export default class TutorialScene extends Phaser.Scene {
         this.countertop = this.add.image(this.scale.width / 2, this.scale.height / 2, "countertop");
         this.wall = this.add.image(this.scale.width / 2, this.scale.height / 2, "wall");
 
-        // set counter
-        // set cup
-        const cupImage = this.add.image(700, 500, "cup").setScale(.25);
-        this.cup = this.add.group();
-        this.cup.add(cupImage);
 
         // set default cat 
         const catImage = this.add.image(725, 390, "whiteCat").setScale(.25);
         this.whiteCat = this.add.group();
         this.whiteCat.add(catImage);
+
+        this.countertop = this.add.image(this.scale.width / 2, this.scale.height / 2, "countertop");
+
+        // set cup
+        const cupImage = this.add.image(700, 500, 'cup').setScale(.25);
+        this.cup = this.add.group();
+        this.cup.add(cupImage);
 
         // set instructions
         this.instruction = this.add.image(150, 180, "instruction1");
