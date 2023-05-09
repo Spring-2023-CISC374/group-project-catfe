@@ -33,6 +33,8 @@ Diya Shah:
 - Fixed tutorial scene aesthetics, by add css elements 
 - Added and created bacground assets for final win scene and movint to next level scene
 - Updated aesthetics for Money, Level, Replay, and final scene buttons
+- refactored code to get rid of static assets, replaced them with phaser text buttons than can be changee dynamically
+- refactored scenes to skips unused scenes from MVP (insttructions scenes)
 
 Robin Moore:
 - Refactored the code to create Cat objects
