@@ -47,9 +47,17 @@ export default class TutorialScene extends Phaser.Scene {
         const blackCoffeeImage = this.add.image(750, 750, 'blackCoffee').setScale(.3);
         this.blackCoffee.add(blackCoffeeImage);
         //clear button
-        this.clear = this.add.image(1350, 100, 'clear');
+        this.clear =this.add.text(1350, 100, 'Clear', { font: '30px Avenir',
+        color: 'white',
+        backgroundColor: '#4a2511', 
+        padding: {x:20, y:20} });
         //send button
-        this.send = this.add.image(1350, 200, 'send');
+        this.send = this.add.text(1350, 200, 'Send', { font: '30px Avenir',
+        color: 'white',
+        backgroundColor: '#4a2511', 
+        padding: {x:20, y:20} });
+
+
         if (this.rng === 1) { // rng option for orange cat
             //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
 
