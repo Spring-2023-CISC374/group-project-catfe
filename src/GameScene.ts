@@ -2,6 +2,8 @@ import Cat from "./objects/Cat";
 
 export default class GameScene extends Phaser.Scene {
     public background: any;
+    public wall: any;
+    public countertop: any;
     public counter: any;
     public instruction: any;
     public clear: any;
@@ -75,8 +77,18 @@ export default class GameScene extends Phaser.Scene {
     create(data: {level: integer, money: integer}){
         this.level = data.level;
         this.money = data.money;
-        //set background
-        this.background = this.add.image(this.scale.width/2, this.scale.height/2, "background");
+        //set wall and counter
+        this.wall = this.add.image(this.scale.width/2, this.scale.height/2, "wall");
+
+        //DON'T MOVE! needs to stay here so that the countertop is brought forward and cats are behind it 
+        this.cats = [new Cat(this, 725, 390, 'tan', 1),
+        new Cat(this, 725, 800, 'white', 1), 
+        new Cat(this, 725, 390, 'black', 2),
+        new Cat(this, 725, 390, 'orangeWhite', 3)
+    ];
+      // Don't move the countertop either :)
+        this.countertop = this.add.image(this.scale.width/2, this.scale.height/2, "countertop");
+
         //set counter
         this.counter = this.add.image(700, 500, "counter");
         //set instructions
@@ -149,11 +161,6 @@ export default class GameScene extends Phaser.Scene {
         backgroundColor: 'white', 
         padding: {x:10, y:10}});
 
-        this.cats = [new Cat(this, 725, 390, 'tan', 1),
-            new Cat(this, 725, 390, 'white', 1), 
-            new Cat(this, 725, 390, 'black', 2),
-            new Cat(this, 725, 390, 'orangeWhite', 3)
-        ];
         this.cats = this.cats.filter(cat => cat.level <= this.level); // filters cats based on their level
         this.cup = this.add.image(750, 500, "cup").setScale(.25);
 
