@@ -32,6 +32,11 @@ export default class GameScene extends Phaser.Scene {
     public levelCount: any;
     private level: integer = 0;
     private final_level: integer = 3;
+    private instIndex = 0;
+    private nextButton?: Phaser.GameObjects.Image;
+    private prevButton?: Phaser.GameObjects.Image;
+    private flipButton?: Phaser.GameObjects.Image;
+    private instructionPseudo?: Phaser.GameObjects.Image;
 
     private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
@@ -68,6 +73,14 @@ export default class GameScene extends Phaser.Scene {
         'instruction2',
         'instruction3',
       ];
+
+    private pseudocodeInstructions: string[] = [ // pseudocode instructions, taking the form of a more detailed booklet kind of thing
+        'basesPseudo',
+        'accessoriesPseudo',
+        'hatsPseudo',
+        'clothingPseudo'
+    ]
+    
 
   
     constructor(){
@@ -170,22 +183,16 @@ export default class GameScene extends Phaser.Scene {
         }
         this.queue[0].setVisible(true);
 
-        /*if (this.rng === 1){ // rng option for orange cat
-            //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
+        this.instructionPseudo = this.add.image(175, 180, this.pseudocodeInstructions[this.instIndex]);
+        this.instructionPseudo.setVisible(false);
 
-            this.catType = 'orange';
+        this.flipButton = this.add.image(25, 25, 'flipButton').setInteractive();
+        this.flipButton.on('pointerdown', () => this.handleFlipClick());
+        this.prevButton = this.add.image(80, 25, 'leftArrow').setInteractive();
+        this.prevButton.on('pointerdown', () => this.handlePrevClick());
+        this.nextButton = this.add.image(145, 25, 'rightArrow').setInteractive();
+        this.nextButton.on('pointerdown', () => this.handleNextClick());
 
-        }
-        else{
-
-            this.catType = 'white';
-
-        }
-
-        this.cat = new Cat(this, 700, 150, this.catType);
-
-        this.wantedIngredient = this.cat.wantedIngredients[0];
-        */
     }
     handleClearClick() {
       const keys: ('caramelLatte' | 'vanillaLatte'  | 'blackCoffee' | 'milk' | 'almondMilk' | 'oatMilk' | 'cookie' | 'muffin' | 'cakepop' | 'lemonPump' | 'mintPump' | 'raspberryPump')[] = ['caramelLatte', 'vanillaLatte', 'blackCoffee', 'milk', 'almondMilk', 'oatMilk', 'cookie', 'muffin', 'cakepop','lemonPump','mintPump', 'raspberryPump'];
@@ -274,9 +281,6 @@ export default class GameScene extends Phaser.Scene {
         }
     }
     
-    
-    
-
       handleCaramelClick() {
         const newCaramelLatte = this.add.image(700, 500, 'caramelLatte').setScale(0.05);
         this.addToMyCounter(newCaramelLatte);
@@ -291,6 +295,27 @@ export default class GameScene extends Phaser.Scene {
         const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.05);
         this.addToMyCounter(newCoffee);
       }
+
+      handleFlipClick() {
+        this.instructionPseudo?.setVisible(!this.instructionPseudo.visible);
+        this.instruction.setVisible(!this.instruction.visible);
+      }
+
+      handlePrevClick() {
+        if(this.instIndex>0){
+          this.instIndex--;
+          this.instructionPseudo?.setTexture(this.pseudocodeInstructions[this.instIndex]);
+        }
+      }
+
+      handleNextClick() {
+        if(this.instIndex<3){
+          this.instIndex++;
+          this.instructionPseudo?.setTexture(this.pseudocodeInstructions[this.instIndex]);
+          //this.instructionPseudo = this.add.image(100, 100, this.pseudocodeInstructions[this.instIndex]);
+        }
+      }
+    
       handleMilkClick() {
         const newMilk = this.add.image(700, 400, 'milk').setScale(0.175);
         this.addToMyCounter(newMilk);
