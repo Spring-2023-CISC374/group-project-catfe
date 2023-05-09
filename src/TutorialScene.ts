@@ -1,20 +1,15 @@
-import Cat from "./objects/Cat";
-
 export default class TutorialScene extends Phaser.Scene {
     public background: any;
-    public counter: any;
+    public countertop: any;
     public instruction: any;
     public clear: any;
     public send: any;
     public cup: any;
-    private cat?: Cat;
-    private catType?: string;
+    private whiteCat: any;
     private caramelLatte: any;
     private vanillaLatte: any;
     private blackCoffee: any;
     private tutorialMessage: any;
-    private level: integer = 1;
-    private countertop: any;
     private wall: any;
     private almondMilk: any;
     private milk: any;
@@ -25,13 +20,13 @@ export default class TutorialScene extends Phaser.Scene {
     private lemonPump: any;
     private raspberryPump: any;
     private mintPump: any;
+    private level: integer = 0;
+
 
 
     constructor(){
         super( {key: 'TutorialScene'});
     }
-
-    private rng = Math.floor(Math.random() * 2) + 1; // rng for which cat to send out
 
 
     create(){
@@ -39,10 +34,15 @@ export default class TutorialScene extends Phaser.Scene {
         //this.background = this.add.image(this.scale.width/2, this.scale.height/2, "background");
         this.countertop = this.add.image(this.scale.width/2, this.scale.height/2, "countertop");
         this.wall = this.add.image(this.scale.width/2, this.scale.height/2, "wall");
+
         //set counter
-        this.counter = this.add.image(700, 500, "counter");
         //set cup
-        this.cup = this.add.image(750, 500, "cup").setScale(.25);
+        const cupImage = this.add.image(700, 500, "cup").setScale(.25);
+        this.cup.add(cupImage)
+
+        //set default cat 
+        const catImage = this.add.image(725, 390, "whiteCat");
+        this.whiteCat.add(catImage);
 
         //set instructions
         this.instruction = this.add.image(150,180, "instruction1");
@@ -87,13 +87,6 @@ export default class TutorialScene extends Phaser.Scene {
         const mintPumpImage = this.add.image(1300, 495, 'mintPump').setScale(.38);
         this.mintPump.add(mintPumpImage);
 
-
-
-
-
-
-
-
         //clear button
         this.clear =this.add.text(1350, 100, 'Clear', { font: '30px Avenir',
         color: 'white',
@@ -104,22 +97,6 @@ export default class TutorialScene extends Phaser.Scene {
         color: 'white',
         backgroundColor: '#4a2511', 
         padding: {x:20, y:20} });
-
-
-        if (this.rng === 1) { // rng option for orange cat
-            //this.orangeCat = this.add.image(700, 150, "orangeCat").setScale(.25); //throw an orange cat behind the counter
-
-            this.catType = 'orange';
-
-        }
-        else {
-
-            this.catType = 'white';
-
-        }
-
-        this.cat = new Cat(this, 700, 150, this.catType, 1);
-        this.cat.setVisible(true);
       
         //BEGIN TUTORIAL: 
         this.tutorialMessage = this.add.text(0, 0, 'Welcome to Catfe!\nClick anywhere to continue.', { font: '30px Avenir',
