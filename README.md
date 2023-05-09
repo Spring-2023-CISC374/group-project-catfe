@@ -13,6 +13,9 @@ Emma Frampton:
 - Added abstracted BaseScene with detailed docstrings for future code references.
 - Changed variables to be more abstract: ex. myBag --> myCounter to represent possible ingredients
 - Cleaned up inital code, fixed scene calls, and dealt with all group merge conflicts
+- Created and implemeneted all ingredients and systems
+- Came up with cat list logic
+- Deployed game
 
 Jillian Camp:
 - Worked on tutorial pop-ups mechanic. 

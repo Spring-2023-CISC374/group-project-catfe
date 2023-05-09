@@ -141,13 +141,13 @@ export default class GameScene extends Phaser.Scene {
         const almondMilkImage = this.add.image(1440, 760, 'almondMilk').setInteractive().setScale(.42);
         almondMilkImage.on('pointerdown', () => this.handleAlmondMilkClick());
         this.almondMilk.add(almondMilkImage);
-        const cookieImage = this.add.image(100, 525, 'cookie').setInteractive().setScale(.3);
+        const cookieImage = this.add.image(430, 575, 'cookie').setInteractive().setScale(.3);
         cookieImage.on('pointerdown', () => this.handleCookieClick());
         this.cookie.add(cookieImage);       
-        const muffinImage = this.add.image(100, 645, 'muffin').setInteractive().setScale(.3);
+        const muffinImage = this.add.image(430, 670, 'muffin').setInteractive().setScale(.3);
         muffinImage.on('pointerdown', () => this.handleMuffinClick());
         this.muffin.add(muffinImage);
-        const cakepopImage = this.add.image(100, 800, 'cakepop').setInteractive().setScale(.3);
+        const cakepopImage = this.add.image(430, 800, 'cakepop').setInteractive().setScale(.3);
         cakepopImage.on('pointerdown', () => this.handleCakepopClick());
         this.cakepop.add(cakepopImage);
         const lemonPumpImage = this.add.image(1100, 495, 'lemonPump').setInteractive().setScale(.38);
