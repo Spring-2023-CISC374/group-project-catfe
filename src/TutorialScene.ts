@@ -4,8 +4,9 @@ export default class TutorialScene extends Phaser.Scene {
     public instruction: any;
     public clear: any;
     public send: any;
-    public cup: any;
-    private whiteCat: any;
+    private level: integer = 0;
+    public cup: Phaser.GameObjects.Group;
+    private whiteCat: Phaser.GameObjects.Group;
     private caramelLatte: any;
     private vanillaLatte: any;
     private blackCoffee: any;
@@ -20,34 +21,32 @@ export default class TutorialScene extends Phaser.Scene {
     private lemonPump: any;
     private raspberryPump: any;
     private mintPump: any;
-    private level: integer = 0;
 
-
-
-    constructor(){
-        super( {key: 'TutorialScene'});
+    constructor() {
+        super({ key: 'TutorialScene' });
     }
 
-
-    create(){
-        //set background
+    create() {
+        // set background
         //this.background = this.add.image(this.scale.width/2, this.scale.height/2, "background");
-        this.countertop = this.add.image(this.scale.width/2, this.scale.height/2, "countertop");
-        this.wall = this.add.image(this.scale.width/2, this.scale.height/2, "wall");
+        this.countertop = this.add.image(this.scale.width / 2, this.scale.height / 2, "countertop");
+        this.wall = this.add.image(this.scale.width / 2, this.scale.height / 2, "wall");
 
-        //set counter
-        //set cup
+        // set counter
+        // set cup
         const cupImage = this.add.image(700, 500, "cup").setScale(.25);
-        this.cup.add(cupImage)
+        this.cup = this.add.group();
+        this.cup.add(cupImage);
 
-        //set default cat 
-        const catImage = this.add.image(725, 390, "whiteCat");
+        // set default cat 
+        const catImage = this.add.image(725, 390, "whiteCat").setScale(.25);
+        this.whiteCat = this.add.group();
         this.whiteCat.add(catImage);
 
-        //set instructions
-        this.instruction = this.add.image(150,180, "instruction1");
+        // set instructions
+        this.instruction = this.add.image(150, 180, "instruction1");
 
-        //set ingredients
+        // set ingredients
         this.almondMilk = this.add.group();
         this.milk = this.add.group();
         this.oatMilk = this.add.group();
@@ -60,7 +59,6 @@ export default class TutorialScene extends Phaser.Scene {
         this.caramelLatte = this.add.group();
         this.vanillaLatte = this.add.group();
         this.blackCoffee = this.add.group();
-
         //set their images and buttons
         const caramelLatteImage = this.add.image(600, 700, 'caramelLatte').setScale(.25);
         this.caramelLatte.add(caramelLatteImage);
