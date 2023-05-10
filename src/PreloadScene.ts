@@ -8,6 +8,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 	}
 
 	preload() {
+		this.load.audio('backgroundMusic', ['assets/floating-cat.mp3']);
 		this.load.image('titleScreen', 'assets/catfe_title.png'); //created new title/preload scene - DIYA
 		//Countertop and wall
 		this.load.image('countertop', 'assets/Countertop.png');
@@ -15,9 +16,31 @@ export default class HelloWorldScene extends Phaser.Scene {
 		//Background
 		this.load.image('background', 'assets/Background.png');
 		//Cats
-		this.load.image('blackCat', 'assets/cats/L1-B.PNG');
-		this.load.image('tanCat', 'assets/cats/L1-T.PNG');
-		this.load.image('whiteCat', 'assets/cats/L1-W.png');
+			//L1
+		this.load.image('l1b', 'assets/cats/L1-B.PNG');
+		this.load.image('l1t', 'assets/cats/L1-T.PNG');
+		this.load.image('l1w', 'assets/cats/L1-W.png');
+			//L2
+		this.load.image('l2b1', 'assets/cats/L2-B1.png');
+		this.load.image('l2b2', 'assets/cats/L2-B2.png');
+		this.load.image('l2t1', 'assets/cats/L2-T1.png');
+		this.load.image('l2t2', 'assets/cats/L2-T2.png');
+		this.load.image('l2w1', 'assets/cats/L2-W1.png');
+		this.load.image('l2w2', 'assets/cats/L2-W2.png');
+			//L3
+		this.load.image('l3b1', 'assets/cats/L3-B1.png');
+		this.load.image('l3b2', 'assets/cats/L3-B2.png');
+		this.load.image('l3t1', 'assets/cats/L3-T1.png');
+		this.load.image('l3t2', 'assets/cats/L3-T2.png');
+		this.load.image('l3w1', 'assets/cats/L3-W1.png');
+		this.load.image('l3w2', 'assets/cats/L3-W2.png');
+			//L4
+		this.load.image('l4b1', 'assets/cats/L4-B1.png');
+		this.load.image('l4b2', 'assets/cats/L4-B2.png');
+		this.load.image('l4t1', 'assets/cats/L4-T1.png');
+		this.load.image('l4w2', 'assets/cats/L4-W2.png');
+		
+		//Cup
 		this.load.image('cup', 'assets/cup.png');
 		// ingredients
 		this.load.image('caramelLatte', 'assets/caramel.png');
@@ -39,16 +62,17 @@ export default class HelloWorldScene extends Phaser.Scene {
 		this.load.image('instruction1', 'assets/instruction1.png');
 		this.load.image('instruction2', 'assets/instruction2.png');
 		this.load.image('instruction3', 'assets/instruction3.png');
+		this.load.image('instruction4', 'assets/instruction4.png');
 		this.load.image('clear', 'assets/clear.png');
 		this.load.image('send', 'assets/send.png');
 		this.load.image('winScene', 'assets/winScreen.png');
 		this.load.image('narrativeScene', 'assets/narrativeScene.png'); //Diya- added
 		this.load.image('instructionsScene', 'assets/InstructionsScene.png'); //diya - added
 		this.load.image('orangeWhiteCat', 'assets/orangeWhiteCat.png');
-		this.load.image('accessoriesPseudo', 'assets/accessoriesPseudo.png');
-		this.load.image('basesPseudo', 'assets/basesPseudo.png');
-		this.load.image('clothingPseudo', 'assets/clothingPseudo.png');
-		this.load.image('hatsPseudo', 'assets/hatsPseudo.png');
+		this.load.image('pseudo1', 'assets/pseudo1.png');
+		this.load.image('pseudo2', 'assets/pseudo2.png');
+		this.load.image('pseudo3', 'assets/pseudo3.png');
+		this.load.image('pseudo4', 'assets/pseudo4.png');
 		this.load.image('leftArrow', 'assets/ArrowLeft.png');
 		this.load.image('rightArrow', 'assets/ArrowRight.png');
 		this.load.image('flipButton', 'assets/FlipButton.png');

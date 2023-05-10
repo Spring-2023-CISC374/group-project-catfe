@@ -31,7 +31,7 @@ export default class GameScene extends Phaser.Scene {
     //levels
     public levelCount: any;
     private level: integer = 0;
-    private final_level: integer = 3;
+    private final_level: integer = 4;
     private instIndex = 0;
     private nextButton?: Phaser.GameObjects.Image;
     private prevButton?: Phaser.GameObjects.Image;
@@ -75,10 +75,10 @@ export default class GameScene extends Phaser.Scene {
       ];
 
     private pseudocodeInstructions: string[] = [ // pseudocode instructions, taking the form of a more detailed booklet kind of thing
-        'basesPseudo',
-        'accessoriesPseudo',
-        'hatsPseudo',
-        'clothingPseudo'
+        'pseudo1',
+        'pseudo2',
+        'pseudo3',
+        'pseudo4'
     ]
     
 
@@ -94,11 +94,28 @@ export default class GameScene extends Phaser.Scene {
         this.wall = this.add.image(this.scale.width/2, this.scale.height/2, "wall");
 
         //DON'T MOVE! needs to stay here so that the countertop is brought forward and cats are behind it 
-        this.cats = [new Cat(this, 725, 390, 'tan', 1),
-        new Cat(this, 725, 390, 'white', 1), //Put the white cat far down to test if it doesn't show up(it doesn't, it's behind counter)
-        new Cat(this, 725, 390, 'black', 2),
-        new Cat(this, 725, 390, 'orangeWhite', 3)
+        this.cats = [new Cat(this, 725, 390, 'l1b', 1),
+        new Cat(this, 725, 390, 'l1t', 1), //Put the white cat far down to test if it doesn't show up(it doesn't, it's behind counter)
+        new Cat(this, 725, 390, 'l1w', 1),
+        new Cat(this, 725, 390, 'l2b1', 2),
+        new Cat(this, 725, 390, 'l2b2', 2),
+        new Cat(this, 725, 390, 'l2t1', 2),
+        new Cat(this, 725, 390, 'l2t2', 2),
+        new Cat(this, 725, 390, 'l2w1', 2),
+        new Cat(this, 725, 390, 'l2w2', 2),
+        new Cat(this, 725, 390, 'l3b1', 3),
+        new Cat(this, 725, 390, 'l3b2', 3),
+        new Cat(this, 725, 390, 'l3t1', 3),
+        new Cat(this, 725, 390, 'l3t2', 3),
+        new Cat(this, 725, 390, 'l3w1', 3),
+        new Cat(this, 725, 390, 'l3w2', 3),
+        new Cat(this, 725, 390, 'l4b1', 4),
+        new Cat(this, 725, 390, 'l4b2', 4),
+        new Cat(this, 725, 390, 'l4t1', 4),
+        new Cat(this, 725, 390, 'l4w1', 4),
+
     ];
+      this.cats.forEach(cat => cat.bob());
       // Don't move the countertop either :)
         this.countertop = this.add.image(this.scale.width/2, this.scale.height/2, "countertop");
 
@@ -106,7 +123,7 @@ export default class GameScene extends Phaser.Scene {
         this.counter = this.add.image(700, 500, "counter");
         //set instructions
         const instructionKey = this.instructionKeys[this.level - 1] || 'instruction3'; //sets proper instruction based on what current level is
-        this.instruction = this.add.image(150, 180, instructionKey);
+        this.instruction = this.add.image(230, 230, instructionKey).setScale(.55);
         
         //set ingredients
         this.caramelLatte = this.add.group();
@@ -126,50 +143,242 @@ export default class GameScene extends Phaser.Scene {
         const caramelLatteImage = this.add.image(600, 700, 'caramelLatte').setInteractive().setScale(.25);
         caramelLatteImage.on('pointerdown', () => this.handleCaramelClick());
         this.caramelLatte.add(caramelLatteImage);
+        caramelLatteImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: caramelLatteImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        
+        caramelLatteImage.on('pointerout', () => {
+          this.tweens.killTweensOf(caramelLatteImage);
+          caramelLatteImage.y = 700;
+        });
+        
+
+
         const vanillaLatteImage = this.add.image(900, 700, 'vanillaLatte').setInteractive().setScale(.2);
         vanillaLatteImage.on('pointerdown', () => this.handleVanillaClick());
         this.vanillaLatte.add(vanillaLatteImage);
+        vanillaLatteImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: vanillaLatteImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        vanillaLatteImage.on('pointerout', () => {
+          this.tweens.killTweensOf(vanillaLatteImage);
+          vanillaLatteImage.y = 700;
+        });
+        
         const blackCoffeeImage = this.add.image(750, 700, 'blackCoffee').setInteractive().setScale(.2);
         blackCoffeeImage.on('pointerdown', () => this.handleCoffeeClick());
         this.blackCoffee.add(blackCoffeeImage);
+        blackCoffeeImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: blackCoffeeImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        blackCoffeeImage.on('pointerout', () => {
+          this.tweens.killTweensOf(blackCoffeeImage);
+          blackCoffeeImage.y = 700;
+        });
+
+
         const milkImage = this.add.image(1450, 525, 'milk').setInteractive().setScale(.4);
         milkImage.on('pointerdown', () => this.handleMilkClick());
         this.milk.add(milkImage);
+
+        milkImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: milkImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        milkImage.on('pointerout', () => {
+          this.tweens.killTweensOf(milkImage);
+          milkImage.y = 525;
+        });
+
         const oatMilkImage = this.add.image(1450, 638, 'oatMilk').setInteractive().setScale(.4);
         oatMilkImage.on('pointerdown', () => this.handleOatMilkClick());
         this.oatMilk.add(oatMilkImage);
+
+        oatMilkImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: oatMilkImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        oatMilkImage.on('pointerout', () => {
+          this.tweens.killTweensOf(oatMilkImage);
+          oatMilkImage.y = 638;
+        });
+
         const almondMilkImage = this.add.image(1440, 760, 'almondMilk').setInteractive().setScale(.42);
         almondMilkImage.on('pointerdown', () => this.handleAlmondMilkClick());
         this.almondMilk.add(almondMilkImage);
-        const cookieImage = this.add.image(430, 575, 'cookie').setInteractive().setScale(.3);
+
+        almondMilkImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: almondMilkImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        almondMilkImage.on('pointerout', () => {
+          this.tweens.killTweensOf(almondMilkImage);
+          almondMilkImage.y = 760;
+        });
+        const cookieImage = this.add.image(100, 525, 'cookie').setInteractive().setScale(.3);
         cookieImage.on('pointerdown', () => this.handleCookieClick());
-        this.cookie.add(cookieImage);       
-        const muffinImage = this.add.image(430, 670, 'muffin').setInteractive().setScale(.3);
+        this.cookie.add(cookieImage);   
+        
+        cookieImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: cookieImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        cookieImage.on('pointerout', () => {
+          this.tweens.killTweensOf(cookieImage);
+          cookieImage.y = 525;
+        });
+        const muffinImage = this.add.image(100, 645, 'muffin').setInteractive().setScale(.3);
         muffinImage.on('pointerdown', () => this.handleMuffinClick());
         this.muffin.add(muffinImage);
-        const cakepopImage = this.add.image(430, 800, 'cakepop').setInteractive().setScale(.3);
+
+
+          muffinImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: muffinImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      muffinImage.on('pointerout', () => {
+        this.tweens.killTweensOf(muffinImage);
+        muffinImage.y = 645;
+      });
+        const cakepopImage = this.add.image(100, 800, 'cakepop').setInteractive().setScale(.3);
         cakepopImage.on('pointerdown', () => this.handleCakepopClick());
         this.cakepop.add(cakepopImage);
+        cakepopImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: cakepopImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      cakepopImage.on('pointerout', () => {
+        this.tweens.killTweensOf(cakepopImage);
+        cakepopImage.y = 800;
+      });
         const lemonPumpImage = this.add.image(1100, 495, 'lemonPump').setInteractive().setScale(.38);
         lemonPumpImage.on('pointerdown', () => this.handleLemonPumpClick());
         this.lemonPump.add(lemonPumpImage);
+
+        lemonPumpImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: lemonPumpImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      lemonPumpImage.on('pointerout', () => {
+        this.tweens.killTweensOf(lemonPumpImage);
+        lemonPumpImage.y = 495;
+      });
         const raspberryPumpImage = this.add.image(1200, 495, 'raspberryPump').setInteractive().setScale(.38);
         raspberryPumpImage.on('pointerdown', () => this.handleRaspberryPumpClick());
         this.raspberryPump.add(raspberryPumpImage);
+
+        raspberryPumpImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: raspberryPumpImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      raspberryPumpImage.on('pointerout', () => {
+        this.tweens.killTweensOf(raspberryPumpImage);
+        raspberryPumpImage.y = 495;
+      });
         const mintPumpImage = this.add.image(1300, 495, 'mintPump').setInteractive().setScale(.38);
         mintPumpImage.on('pointerdown', () => this.handleMintPumpClick());
         this.mintPump.add(mintPumpImage);
-        //clear button
-        this.clear = this.add.image(1350, 100, 'clear').setInteractive().on('pointerdown', () => this.handleClearClick());
-        //send button
-        this.send = this.add.image(1350, 200, 'send').setInteractive().on('pointerdown', () => this.handleSendClick());
+        mintPumpImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: mintPumpImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      mintPumpImage.on('pointerout', () => {
+        this.tweens.killTweensOf(mintPumpImage);
+        mintPumpImage.y = 495;
+      });
 
-        this.moneyCount = this.add.text(300, 16, 'Money: '+this.money, { font: '30px Avenir',
+        //clear button
+        this.clear =this.add.text(1350, 100, 'Clear', { font: '30px Avenir',
+        color: 'white',
+        backgroundColor: '#4a2511', 
+        padding: {x:20, y:20} }).setInteractive().on('pointerdown', () => this.handleClearClick());
+        //send button
+        this.send = this.add.text(1350, 200, 'Send', { font: '30px Avenir',
+        color: 'white',
+        backgroundColor: '#4a2511', 
+        padding: {x:20, y:20} }).setInteractive().on('pointerdown', () => this.handleSendClick());
+
+        this.moneyCount = this.add.text(500, 16, 'Money: '+this.money, { font: '30px Avenir',
         color: '#4a2511',
         backgroundColor: 'white', 
         padding: {x:10, y:10}});
 
-        this.levelCount = this.add.text(300, 100, 'Level: '+this.level, { font: '30px Avenir',
+        this.levelCount = this.add.text(500, 100, 'Level: '+this.level, { font: '30px Avenir',
         color: '#4a2511',
         backgroundColor: 'white', 
         padding: {x:10, y:10}});
@@ -183,7 +392,7 @@ export default class GameScene extends Phaser.Scene {
         }
         this.queue[0].setVisible(true);
 
-        this.instructionPseudo = this.add.image(175, 180, this.pseudocodeInstructions[this.instIndex]);
+        this.instructionPseudo = this.add.image(230, 230, this.pseudocodeInstructions[this.instIndex]).setScale(.55);
         this.instructionPseudo.setVisible(false);
 
         this.flipButton = this.add.image(25, 25, 'flipButton').setInteractive();
@@ -287,7 +496,7 @@ export default class GameScene extends Phaser.Scene {
       }
     
       handleVanillaClick() {
-        const newVanilla = this.add.image(700, 400, 'vanillaLatte').setScale(0.35);
+        const newVanilla = this.add.image(700, 400, 'vanillaLatte').setScale(0.15);
         this.addToMyCounter(newVanilla);
       }
 

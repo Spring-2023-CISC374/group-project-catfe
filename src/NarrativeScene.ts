@@ -4,12 +4,15 @@ export default class narrativeScene extends Phaser.Scene{
 //DIYA - narrative scene
     
     private button: any;
+    public music: any;
 
     constructor(){
         super({key: 'NarrativeScene'});
     }
 // TitleScene code lifted from Katarina Pfeifer and Anna McCarter
     create(){
+        this.music = this.sound.add('backgroundMusic');
+        this.music.play();
         //If they click anywhere it moves on to the next scene
         this.button=this.add.image(this.scale.width/2, this.scale.height/2, "narrativeScene")
         .setInteractive()
@@ -18,6 +21,6 @@ export default class narrativeScene extends Phaser.Scene{
     }
 
     goToTutorial(){
-        this.scene.start('InstructionsScene');
+        this.scene.start('TutorialScene');
     }
 }
