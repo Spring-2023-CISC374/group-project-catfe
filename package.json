@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
+	"homepage": "https://spring-2023-cisc374.github.io/group-project-catfe/",
 	"scripts": {
 		"start": "vite",
 		"build": "tsc && vite build",
