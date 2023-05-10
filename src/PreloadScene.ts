@@ -38,7 +38,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 		this.load.image('l4b1', 'assets/cats/L4-B1.png');
 		this.load.image('l4b2', 'assets/cats/L4-B2.png');
 		this.load.image('l4t1', 'assets/cats/L4-T1.png');
-		this.load.image('l4w2', 'assets/cats/L4-W2.png');
+		this.load.image('l4w2', 'assets/cats/L4-W1.png');
 		
 		//Cup
 		this.load.image('cup', 'assets/cup.png');

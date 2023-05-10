@@ -72,6 +72,7 @@ export default class GameScene extends Phaser.Scene {
         'instruction1',
         'instruction2',
         'instruction3',
+        'instruction4'
       ];
 
     private pseudocodeInstructions: string[] = [ // pseudocode instructions, taking the form of a more detailed booklet kind of thing
@@ -121,9 +122,7 @@ export default class GameScene extends Phaser.Scene {
 
         //set counter
         this.counter = this.add.image(700, 500, "counter");
-        //set instructions
-        const instructionKey = this.instructionKeys[this.level - 1] || 'instruction3'; //sets proper instruction based on what current level is
-        this.instruction = this.add.image(230, 230, instructionKey).setScale(.55);
+       
         
         //set ingredients
         this.caramelLatte = this.add.group();
@@ -392,6 +391,9 @@ export default class GameScene extends Phaser.Scene {
         }
         this.queue[0].setVisible(true);
 
+        //set instructions
+        //const instructionKey = this.instructionKeys[this.level - 1] || 'instruction4'; //sets proper instruction based on what current level is
+        this.instruction = this.add.image(230, 230, this.instructionKeys[this.instIndex]).setScale(.55);
         this.instructionPseudo = this.add.image(230, 230, this.pseudocodeInstructions[this.instIndex]).setScale(.55);
         this.instructionPseudo.setVisible(false);
 
@@ -491,7 +493,7 @@ export default class GameScene extends Phaser.Scene {
     }
     
       handleCaramelClick() {
-        const newCaramelLatte = this.add.image(700, 500, 'caramelLatte').setScale(0.05);
+        const newCaramelLatte = this.add.image(700, 500, 'caramelLatte').setScale(0.10);
         this.addToMyCounter(newCaramelLatte);
       }
     
@@ -501,7 +503,7 @@ export default class GameScene extends Phaser.Scene {
       }
 
       handleCoffeeClick() {
-        const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.05);
+        const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.10);
         this.addToMyCounter(newCoffee);
       }
 
@@ -514,6 +516,7 @@ export default class GameScene extends Phaser.Scene {
         if(this.instIndex>0){
           this.instIndex--;
           this.instructionPseudo?.setTexture(this.pseudocodeInstructions[this.instIndex]);
+          this.instruction?.setTexture(this.instructionKeys[this.instIndex]);
         }
       }
 
@@ -521,6 +524,7 @@ export default class GameScene extends Phaser.Scene {
         if(this.instIndex<3){
           this.instIndex++;
           this.instructionPseudo?.setTexture(this.pseudocodeInstructions[this.instIndex]);
+          this.instruction?.setTexture(this.instructionKeys[this.instIndex]);
           //this.instructionPseudo = this.add.image(100, 100, this.pseudocodeInstructions[this.instIndex]);
         }
       }
