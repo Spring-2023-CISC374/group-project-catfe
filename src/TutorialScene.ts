@@ -34,9 +34,9 @@ export default class TutorialScene extends Phaser.Scene {
 
 
         // set default cat 
-        const catImage = this.add.image(725, 390, "whiteCat").setScale(.25);
-        this.whiteCat = this.add.group();
-        this.whiteCat.add(catImage);
+        //const catImage = this.add.image(725, 390, "whiteCat").setScale(.25);
+        //this.whiteCat = this.add.group();
+        //this.whiteCat.add(catImage);
 
         this.countertop = this.add.image(this.scale.width / 2, this.scale.height / 2, "countertop");
 
@@ -46,7 +46,7 @@ export default class TutorialScene extends Phaser.Scene {
         this.cup.add(cupImage);
 
         // set instructions
-        this.instruction = this.add.image(150, 180, "instruction1");
+        this.instruction = this.add.image(230, 230, "instruction1").setScale(.55);
 
         // set ingredients
         this.almondMilk = this.add.group();
@@ -111,7 +111,7 @@ export default class TutorialScene extends Phaser.Scene {
     // Remove the previous tutorial text
         this.tutorialMessage.destroy();
         // Create and display the next tutorial message
-        this.tutorialMessage = this.add.text(500, 250, 'Our adorable customers\nwill be here! Select the\ncorrect ingredient according\nto the side panel in the\ntop left corner!', 
+        this.tutorialMessage = this.add.text(600, 320, 'Our adorable customers\nwill be here, behind the counter!\nSelect the correct ingredient\naccording to the side panel in the\ntop left corner!', 
         { font: '20px Avenir', 
         color: 'white', backgroundColor: '#4a2511',
         padding: {x:20, y:20} });
@@ -121,7 +121,7 @@ export default class TutorialScene extends Phaser.Scene {
     thirdTutorial() {
         this.tutorialMessage.destroy();
         // Create and display the next tutorial message
-        this.tutorialMessage = this.add.text(900, 50, 'Click here to send off\nyour purrfect creation\nor undo!', 
+        this.tutorialMessage = this.add.text(1100, 100, 'Click here to send off\nyour purrfect creation\nor undo!', 
         { font: '20px Avenir', 
         color: 'white',
         backgroundColor: '#4a2511',
