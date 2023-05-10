@@ -69,10 +69,10 @@ export default class HelloWorldScene extends Phaser.Scene {
 		this.load.image('narrativeScene', 'assets/narrativeScene.png'); //Diya- added
 		this.load.image('instructionsScene', 'assets/InstructionsScene.png'); //diya - added
 		this.load.image('orangeWhiteCat', 'assets/orangeWhiteCat.png');
-		this.load.image('accessoriesPseudo', 'assets/accessoriesPseudo.png');
-		this.load.image('basesPseudo', 'assets/basesPseudo.png');
-		this.load.image('clothingPseudo', 'assets/clothingPseudo.png');
-		this.load.image('hatsPseudo', 'assets/hatsPseudo.png');
+		this.load.image('pseudo1', 'assets/pseudo1.png');
+		this.load.image('pseudo2', 'assets/pseudo2.png');
+		this.load.image('pseudo3', 'assets/pseudo3.png');
+		this.load.image('pseudo4', 'assets/pseudo4.png');
 		this.load.image('leftArrow', 'assets/ArrowLeft.png');
 		this.load.image('rightArrow', 'assets/ArrowRight.png');
 		this.load.image('flipButton', 'assets/FlipButton.png');

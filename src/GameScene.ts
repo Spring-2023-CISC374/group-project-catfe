@@ -75,10 +75,10 @@ export default class GameScene extends Phaser.Scene {
       ];
 
     private pseudocodeInstructions: string[] = [ // pseudocode instructions, taking the form of a more detailed booklet kind of thing
-        'basesPseudo',
-        'accessoriesPseudo',
-        'hatsPseudo',
-        'clothingPseudo'
+        'pseudo1',
+        'pseudo2',
+        'pseudo3',
+        'pseudo4'
     ]
     
 
@@ -392,7 +392,7 @@ export default class GameScene extends Phaser.Scene {
         }
         this.queue[0].setVisible(true);
 
-        this.instructionPseudo = this.add.image(175, 180, this.pseudocodeInstructions[this.instIndex]);
+        this.instructionPseudo = this.add.image(230, 230, this.pseudocodeInstructions[this.instIndex]).setScale(.55);
         this.instructionPseudo.setVisible(false);
 
         this.flipButton = this.add.image(25, 25, 'flipButton').setInteractive();
