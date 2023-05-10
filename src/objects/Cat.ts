@@ -26,6 +26,17 @@ export default class Cat extends Phaser.Physics.Arcade.Sprite {
         this.setVisible(false);
     }
 
+    bob() {
+        this.scene.tweens.add({
+          targets: this,
+          y: this.y - 20,
+          duration: 900,
+          ease: 'Sine.easeInOut',
+          yoyo: true,
+          repeat: -1
+        });
+      }
+
     determineOrder() {
         if (this.catType === 'l1t') {
             return ['caramelLatte'];

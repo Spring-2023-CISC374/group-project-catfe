@@ -115,6 +115,7 @@ export default class GameScene extends Phaser.Scene {
         new Cat(this, 725, 390, 'l4w1', 4),
 
     ];
+      this.cats.forEach(cat => cat.bob());
       // Don't move the countertop either :)
         this.countertop = this.add.image(this.scale.width/2, this.scale.height/2, "countertop");
 
@@ -142,39 +143,225 @@ export default class GameScene extends Phaser.Scene {
         const caramelLatteImage = this.add.image(600, 700, 'caramelLatte').setInteractive().setScale(.25);
         caramelLatteImage.on('pointerdown', () => this.handleCaramelClick());
         this.caramelLatte.add(caramelLatteImage);
+        caramelLatteImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: caramelLatteImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        
+        caramelLatteImage.on('pointerout', () => {
+          this.tweens.killTweensOf(caramelLatteImage);
+          caramelLatteImage.y = 700;
+        });
+        
+
+
         const vanillaLatteImage = this.add.image(900, 700, 'vanillaLatte').setInteractive().setScale(.2);
         vanillaLatteImage.on('pointerdown', () => this.handleVanillaClick());
         this.vanillaLatte.add(vanillaLatteImage);
+        vanillaLatteImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: vanillaLatteImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        vanillaLatteImage.on('pointerout', () => {
+          this.tweens.killTweensOf(vanillaLatteImage);
+          vanillaLatteImage.y = 700;
+        });
+        
         const blackCoffeeImage = this.add.image(750, 700, 'blackCoffee').setInteractive().setScale(.2);
         blackCoffeeImage.on('pointerdown', () => this.handleCoffeeClick());
         this.blackCoffee.add(blackCoffeeImage);
+        blackCoffeeImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: blackCoffeeImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        blackCoffeeImage.on('pointerout', () => {
+          this.tweens.killTweensOf(blackCoffeeImage);
+          blackCoffeeImage.y = 700;
+        });
+
+
         const milkImage = this.add.image(1450, 525, 'milk').setInteractive().setScale(.4);
         milkImage.on('pointerdown', () => this.handleMilkClick());
         this.milk.add(milkImage);
+
+        milkImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: milkImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        milkImage.on('pointerout', () => {
+          this.tweens.killTweensOf(milkImage);
+          milkImage.y = 525;
+        });
+
         const oatMilkImage = this.add.image(1450, 638, 'oatMilk').setInteractive().setScale(.4);
         oatMilkImage.on('pointerdown', () => this.handleOatMilkClick());
         this.oatMilk.add(oatMilkImage);
+
+        oatMilkImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: oatMilkImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        oatMilkImage.on('pointerout', () => {
+          this.tweens.killTweensOf(oatMilkImage);
+          oatMilkImage.y = 638;
+        });
+
         const almondMilkImage = this.add.image(1440, 760, 'almondMilk').setInteractive().setScale(.42);
         almondMilkImage.on('pointerdown', () => this.handleAlmondMilkClick());
         this.almondMilk.add(almondMilkImage);
+
+        almondMilkImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: almondMilkImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        almondMilkImage.on('pointerout', () => {
+          this.tweens.killTweensOf(almondMilkImage);
+          almondMilkImage.y = 760;
+        });
         const cookieImage = this.add.image(100, 525, 'cookie').setInteractive().setScale(.3);
         cookieImage.on('pointerdown', () => this.handleCookieClick());
-        this.cookie.add(cookieImage);       
+        this.cookie.add(cookieImage);   
+        
+        cookieImage.on('pointerover', () => {
+            this.tweens.add({
+            targets: cookieImage,
+            y: "-=30",
+            ease: "Sine.easeInOut",
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+          });
+        });
+        cookieImage.on('pointerout', () => {
+          this.tweens.killTweensOf(cookieImage);
+          cookieImage.y = 525;
+        });
         const muffinImage = this.add.image(100, 645, 'muffin').setInteractive().setScale(.3);
         muffinImage.on('pointerdown', () => this.handleMuffinClick());
         this.muffin.add(muffinImage);
+
+
+          muffinImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: muffinImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      muffinImage.on('pointerout', () => {
+        this.tweens.killTweensOf(muffinImage);
+        muffinImage.y = 645;
+      });
         const cakepopImage = this.add.image(100, 800, 'cakepop').setInteractive().setScale(.3);
         cakepopImage.on('pointerdown', () => this.handleCakepopClick());
         this.cakepop.add(cakepopImage);
+        cakepopImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: cakepopImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      cakepopImage.on('pointerout', () => {
+        this.tweens.killTweensOf(cakepopImage);
+        cakepopImage.y = 800;
+      });
         const lemonPumpImage = this.add.image(1100, 495, 'lemonPump').setInteractive().setScale(.38);
         lemonPumpImage.on('pointerdown', () => this.handleLemonPumpClick());
         this.lemonPump.add(lemonPumpImage);
+
+        lemonPumpImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: lemonPumpImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      lemonPumpImage.on('pointerout', () => {
+        this.tweens.killTweensOf(lemonPumpImage);
+        lemonPumpImage.y = 495;
+      });
         const raspberryPumpImage = this.add.image(1200, 495, 'raspberryPump').setInteractive().setScale(.38);
         raspberryPumpImage.on('pointerdown', () => this.handleRaspberryPumpClick());
         this.raspberryPump.add(raspberryPumpImage);
+
+        raspberryPumpImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: raspberryPumpImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      raspberryPumpImage.on('pointerout', () => {
+        this.tweens.killTweensOf(raspberryPumpImage);
+        raspberryPumpImage.y = 495;
+      });
         const mintPumpImage = this.add.image(1300, 495, 'mintPump').setInteractive().setScale(.38);
         mintPumpImage.on('pointerdown', () => this.handleMintPumpClick());
         this.mintPump.add(mintPumpImage);
+        mintPumpImage.on('pointerover', () => {
+          this.tweens.add({
+          targets: mintPumpImage,
+          y: "-=30",
+          ease: "Sine.easeInOut",
+          duration: 500,
+          yoyo: true,
+          repeat: -1
+        });
+      });
+      mintPumpImage.on('pointerout', () => {
+        this.tweens.killTweensOf(mintPumpImage);
+        mintPumpImage.y = 495;
+      });
+
         //clear button
         this.clear =this.add.text(1350, 100, 'Clear', { font: '30px Avenir',
         color: 'white',
