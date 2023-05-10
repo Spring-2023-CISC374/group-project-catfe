@@ -5,8 +5,8 @@ export default class TutorialScene extends Phaser.Scene {
     public clear: any;
     public send: any;
     private level: integer = 1;
-    public cup: Phaser.GameObjects.Group;
-    private whiteCat: Phaser.GameObjects.Group;
+    public cup: Phaser.GameObjects.Group | any;
+    //private whiteCat: Phaser.GameObjects.Group;
     private caramelLatte: any;
     private vanillaLatte: any;
     private blackCoffee: any;
