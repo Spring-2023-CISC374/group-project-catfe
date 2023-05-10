@@ -41,7 +41,7 @@ export default class TutorialScene extends Phaser.Scene {
         this.countertop = this.add.image(this.scale.width / 2, this.scale.height / 2, "countertop");
 
         // set cup
-        const cupImage = this.add.image(700, 500, 'cup').setScale(.25);
+        const cupImage = this.add.image(750, 500, 'cup').setScale(.25);
         this.cup = this.add.group();
         this.cup.add(cupImage);
 
