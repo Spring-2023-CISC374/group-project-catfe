@@ -14,10 +14,12 @@
 		"@typescript-eslint/eslint-plugin": "^5.40.0",
 		"@typescript-eslint/parser": "^5.40.0",
 		"eslint": "^8.25.0",
+		"gh-pages": "^5.0.0",
 		"typescript": "^4.6.4",
 		"vite": "^3.2.5"
 	},
 	"dependencies": {
-		"phaser": "^3.60.0"
+		"phaser": "^3.60.0",
+		"phaser3": "^0.4.34"
 	}
 }
