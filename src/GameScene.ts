@@ -382,7 +382,8 @@ export default class GameScene extends Phaser.Scene {
         backgroundColor: 'white', 
         padding: {x:10, y:10}});
 
-        this.cats = this.cats.filter(cat => cat.level <= this.level); // filters cats based on their level
+        //this.cats = this.cats.filter(cat => cat.level <= this.level); // filters cats based on their level
+        this.cats = this.cats.filter(cat => cat.level === this.level || cat.level === this.level - 1);
         this.cup = this.add.image(750, 500, "cup").setScale(.25);
 
         while (this.cats.length > 0) {
