@@ -488,6 +488,16 @@ export default class GameScene extends Phaser.Scene {
             if (this.money >= 2) {
                 this.money -= 2;
                 this.moneyCount.setText('Money: ' + this.money);
+                const tempText = this.add.text(650, 16, "-2", { font: '30px Avenir',
+                color: '#4a2511',
+                backgroundColor: 'white', 
+                padding: {x:10, y:10}}
+                );
+        
+                // Schedule the text to be destroyed after 'duration' milliseconds
+                this.time.delayedCall(1000, () => {
+                    tempText.destroy();
+                });
             }
             this.handleClearClick();
             const tempText = this.add.text(920, 150, "Wrong! Try Again!", { font: '30px Avenir',
