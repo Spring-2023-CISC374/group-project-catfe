@@ -473,6 +473,16 @@ export default class GameScene extends Phaser.Scene {
               }
             } else {
                 this.queue[0].setVisible(true);
+                const tempText = this.add.text(650, 16, "+10", { font: '30px Avenir',
+                color: '#4a2511',
+                backgroundColor: 'white', 
+                padding: {x:10, y:10}}
+                );
+        
+                // Schedule the text to be destroyed after 'duration' milliseconds
+                this.time.delayedCall(1000, () => {
+                    tempText.destroy();
+                });
             }
         } else {
             if (this.money >= 2) {
