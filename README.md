@@ -13,6 +13,9 @@ Emma Frampton:
 - Added abstracted BaseScene with detailed docstrings for future code references.
 - Changed variables to be more abstract: ex. myBag --> myCounter to represent possible ingredients
 - Cleaned up inital code, fixed scene calls, and dealt with all group merge conflicts
+- Created and implemeneted all ingredients and systems
+- Came up with cat list logic
+- Deployed game
 
 Jillian Camp:
 - Worked on tutorial pop-ups mechanic. 
@@ -33,6 +36,8 @@ Diya Shah:
 - Fixed tutorial scene aesthetics, by add css elements 
 - Added and created bacground assets for final win scene and movint to next level scene
 - Updated aesthetics for Money, Level, Replay, and final scene buttons
+- refactored code to get rid of static assets, replaced them with phaser text buttons than can be changee dynamically
+- refactored scenes to skips unused scenes from MVP (insttructions scenes)
 
 Robin Moore:
 - Refactored the code to create Cat objects
