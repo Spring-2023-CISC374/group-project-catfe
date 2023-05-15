@@ -37,6 +37,7 @@ export default class GameScene extends Phaser.Scene {
     private prevButton?: Phaser.GameObjects.Image;
     private flipButton?: Phaser.GameObjects.Image;
     private instructionPseudo?: Phaser.GameObjects.Image;
+    private click: any;
 
     private cats: Array<Cat> = [];
     private queue: Array<Cat> = [];
@@ -89,6 +90,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create(data: {level: integer, money: integer}){
+        this.click = this.sound.add('selectSound');
         this.level = data.level;
         this.money = data.money;
         //set wall and counter
@@ -432,7 +434,7 @@ this.tweens.add({
               ingredient.destroy();
           });
       });
-      
+      this.click.play();
       this.myCounter.caramelLatte.length = 0;
       this.myCounter.vanillaLatte.length = 0;
       this.myCounter.blackCoffee.length = 0;
@@ -448,6 +450,7 @@ this.tweens.add({
   }
 
       handleSendClick() {
+        this.click.play();
         const wantedIngredients = this.queue[0].wantedIngredients;
         const hasCaramelLatte = this.myCounter.caramelLatte.length > 0;
         const hasVanillaLatte = this.myCounter.vanillaLatte.length > 0;
@@ -553,16 +556,19 @@ this.tweens.add({
       handleCaramelClick() {
         const newCaramelLatte = this.add.image(700, 500, 'caramelLatte').setScale(0.10);
         this.addToMyCounter(newCaramelLatte);
+        this.click.play();
       }
     
       handleVanillaClick() {
         const newVanilla = this.add.image(700, 400, 'vanillaLatte').setScale(0.15);
         this.addToMyCounter(newVanilla);
+        this.click.play();
       }
 
       handleCoffeeClick() {
         const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.10);
         this.addToMyCounter(newCoffee);
+        this.click.play();
       }
 
       handleFlipClick() {
@@ -590,38 +596,47 @@ this.tweens.add({
       handleMilkClick() {
         const newMilk = this.add.image(700, 400, 'milk').setScale(0.175);
         this.addToMyCounter(newMilk);
+        this.click.play();
       }
       handleOatMilkClick() {
         const newOatMilk = this.add.image(700, 400, 'oatMilk').setScale(0.175);
         this.addToMyCounter(newOatMilk);
+        this.click.play();
       }
       handleAlmondMilkClick() {
         const newAlmondMilk = this.add.image(700, 400, 'almondMilk').setScale(0.175);
         this.addToMyCounter(newAlmondMilk);
+        this.click.play();
       }
       handleCookieClick() {
         const newCookie = this.add.image(700, 400, 'cookie').setScale(0.1);
         this.addToMyCounter(newCookie);
+        this.click.play();
       }
       handleMuffinClick() {
         const newMuffin = this.add.image(700, 400, 'muffin').setScale(0.1);
         this.addToMyCounter(newMuffin);
+        this.click.play();
       }
       handleCakepopClick() {
         const newCakepop = this.add.image(700, 400, 'cakepop').setScale(0.1);
         this.addToMyCounter(newCakepop);
+        this.click.play();
       }
       handleLemonPumpClick() {
         const newLemonPump = this.add.image(700, 400, 'lemonPump').setScale(0.1);
         this.addToMyCounter(newLemonPump);
+        this.click.play();
       }
       handleRaspberryPumpClick() {
         const newRaspberryPump = this.add.image(700, 400, 'raspberryPump').setScale(0.1);
         this.addToMyCounter(newRaspberryPump);
+        this.click.play();
       }
       handleMintPumpClick() {
         const newMintPump = this.add.image(700, 400, 'mintPump').setScale(0.1);
         this.addToMyCounter(newMintPump);
+        this.click.play();
     }
 
     addToMyCounter(image: Phaser.GameObjects.Image) {

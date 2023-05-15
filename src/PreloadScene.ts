@@ -8,6 +8,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 	}
 
 	preload() {
+		this.load.audio('selectSound', ['assets/drip-tiny-water.mp3']);
 		this.load.audio('backgroundMusic', ['assets/floating-cat.mp3']);
 		this.load.image('titleScreen', 'assets/catfe_title.png'); //created new title/preload scene - DIYA
 		//Countertop and wall
