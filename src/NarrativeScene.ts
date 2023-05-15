@@ -12,6 +12,7 @@ export default class narrativeScene extends Phaser.Scene{
 // TitleScene code lifted from Katarina Pfeifer and Anna McCarter
     create(){
         this.music = this.sound.add('backgroundMusic');
+        this.music.setVolume(0.5);
         this.music.loop = true;
         this.music.play();
         //If they click anywhere it moves on to the next scene
