@@ -76,6 +76,11 @@ export default class HelloWorldScene extends Phaser.Scene {
 		this.load.image('leftArrow', 'assets/ArrowLeft.png');
 		this.load.image('rightArrow', 'assets/ArrowRight.png');
 		this.load.image('flipButton', 'assets/FlipButton.png');
+
+		//winscenes
+		this.load.image('win-lvl1', 'assets/lvl2-winscene.png');
+		this.load.image('win-lvl2', 'assets/lvl3-winscene.png');
+		this.load.image('win-lvl3', 'assets/lvl4-winscene.png');
 	}
 
 	create() {
