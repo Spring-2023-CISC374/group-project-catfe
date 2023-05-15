@@ -14,6 +14,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 		//Countertop and wall
 		this.load.image('countertop', 'assets/Countertop.png');
 		this.load.image('wall', 'assets/Wall.png');
+		this.load.image('ticket','assets/order-ticket.png');
 		//Background
 		this.load.image('background', 'assets/Background.png');
 		//Cats
