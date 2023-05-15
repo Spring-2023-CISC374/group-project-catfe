@@ -371,6 +371,24 @@ export default class GameScene extends Phaser.Scene {
         color: 'white',
         backgroundColor: '#4a2511', 
         padding: {x:20, y:20} }).setInteractive().on('pointerdown', () => this.handleSendClick());
+        // Add the tweens for the buttons
+this.tweens.add({
+  targets: this.clear,
+  scaleX: 1.1,
+  scaleY: 1.1,
+  duration: 1000,
+  yoyo: true,
+  repeat: -1
+});
+
+this.tweens.add({
+  targets: this.send,
+  scaleX: 1.1,
+  scaleY: 1.1,
+  duration: 1000,
+  yoyo: true,
+  repeat: -1
+});
 
         this.moneyCount = this.add.text(500, 16, 'Money: '+this.money, { font: '30px Avenir',
         color: '#4a2511',
