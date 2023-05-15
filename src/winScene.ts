@@ -28,7 +28,7 @@ export default class winScene extends Phaser.Scene{
         color: '#4a2511',
         backgroundColor: 'white', 
         padding: {x:20, y:20}});
-        const nextButton = this.add.text(500, 500, 'Click here to move to the next level', { font: '30px Avenir',
+        const nextButton = this.add.text(500, 500, 'Click here to begin', { font: '30px Avenir',
         color: '#4a2511',
         backgroundColor: 'white', 
         padding: {x:32, y:32} }).setInteractive();
