@@ -9,6 +9,7 @@ export default class GameScene extends Phaser.Scene {
     public clear: any;
     public send: any;
     public cup: any;
+    public ticket: any;
     //ingredients
     private caramelLatte: any;
     private vanillaLatte: any;
@@ -93,8 +94,10 @@ export default class GameScene extends Phaser.Scene {
         this.click = this.sound.add('selectSound');
         this.level = data.level;
         this.money = data.money;
+        this.instIndex = data.level-1;
         //set wall and counter
         this.wall = this.add.image(this.scale.width/2, this.scale.height/2, "wall");
+        
 
         //DON'T MOVE! needs to stay here so that the countertop is brought forward and cats are behind it 
         this.cats = [new Cat(this, 725, 390, 'l1b', 1),
@@ -125,6 +128,7 @@ export default class GameScene extends Phaser.Scene {
         //set counter
         this.counter = this.add.image(700, 500, "counter");
        
+        this.ticket = this.add.image(400, 690, 'ticket').setScale(.4);
         
         //set ingredients
         this.caramelLatte = this.add.group();
@@ -447,6 +451,11 @@ this.tweens.add({
       this.myCounter.lemonPump.length = 0;
       this.myCounter.raspberryPump.length = 0;
       this.myCounter.mintPump.length = 0;
+
+      //delete clones on ticket 
+      let children = this.children.getChildren();
+      let childrenToRemove = children.filter(child => child.getData('isClone'));
+      childrenToRemove.forEach(child => child.destroy());
   }
 
       handleSendClick() {
@@ -552,23 +561,55 @@ this.tweens.add({
             });
         }
     }
+
+    animateClick(image: Phaser.GameObjects.Image, x: integer, y: integer, scale1: integer) {
+     
+      const clonedImage = this.add.image(image.x, image.y, image.texture.key).setScale(image.scaleX, image.scaleY);
+
+
+      clonedImage.setPosition(x, y);
+      clonedImage.setScale(scale1/1.5); 
+
+      clonedImage.setData('isClone', true);
+      
+      this.tweens.add({
+          targets: image,
+          x: 700, // x coordinate of the cup
+          y: 500, // y coordinate of the cup
+          scale: 0.10,
+          alpha: 0, 
+          duration: 1750, 
+          ease: 'Power2', 
+          onComplete: () => {
+              image.setVisible(false); // hide the image when the animation is complete
+          }
+      });
+  }
     
-      handleCaramelClick() {
-        const newCaramelLatte = this.add.image(700, 500, 'caramelLatte').setScale(0.10);
-        this.addToMyCounter(newCaramelLatte);
-        this.click.play();
-      }
+    handleCaramelClick() {
+      // Place the newCaramelLatte at the button location
+      const newCaramelLatte = this.add.image(600, 700, 'caramelLatte').setScale(.25);
+  
+      // Add the image to the counter
+      this.addToMyCounter(newCaramelLatte);
+      
+      this.click.play();
+  
+      this.animateClick(newCaramelLatte, 350, 550, .135);
+  }
     
       handleVanillaClick() {
-        const newVanilla = this.add.image(700, 400, 'vanillaLatte').setScale(0.15);
+        const newVanilla = this.add.image(900, 700, 'vanillaLatte').setScale(0.2);
         this.addToMyCounter(newVanilla);
         this.click.play();
+        this.animateClick(newVanilla, 355, 610, .17);
       }
 
       handleCoffeeClick() {
-        const newCoffee = this.add.image(700, 400, 'blackCoffee').setScale(0.10);
+        const newCoffee = this.add.image(750, 700, 'blackCoffee').setScale(0.2);
         this.addToMyCounter(newCoffee);
         this.click.play();
+        this.animateClick(newCoffee, 350, 690, .110);
       }
 
       handleFlipClick() {
@@ -594,49 +635,58 @@ this.tweens.add({
       }
     
       handleMilkClick() {
-        const newMilk = this.add.image(700, 400, 'milk').setScale(0.175);
+        const newMilk = this.add.image(1450, 525, 'milk').setScale(0.4);
         this.addToMyCounter(newMilk);
         this.click.play();
+        this.animateClick(newMilk, 410, 560, .18);
       }
       handleOatMilkClick() {
-        const newOatMilk = this.add.image(700, 400, 'oatMilk').setScale(0.175);
+        const newOatMilk = this.add.image(1450, 638, 'oatMilk').setScale(0.4);
         this.addToMyCounter(newOatMilk);
         this.click.play();
+        this.animateClick(newOatMilk, 450, 560, .18);
       }
       handleAlmondMilkClick() {
-        const newAlmondMilk = this.add.image(700, 400, 'almondMilk').setScale(0.175);
+        const newAlmondMilk = this.add.image(1440, 760, 'almondMilk').setScale(0.42);
         this.addToMyCounter(newAlmondMilk);
         this.click.play();
+        this.animateClick(newAlmondMilk, 490, 560, .18);
       }
       handleCookieClick() {
-        const newCookie = this.add.image(700, 400, 'cookie').setScale(0.1);
+        const newCookie = this.add.image(100, 525, 'cookie').setScale(0.3);
         this.addToMyCounter(newCookie);
         this.click.play();
+        this.animateClick(newCookie, 450, 620, .15);
       }
       handleMuffinClick() {
-        const newMuffin = this.add.image(700, 400, 'muffin').setScale(0.1);
+        const newMuffin = this.add.image(100, 645, 'muffin').setScale(0.3);
         this.addToMyCounter(newMuffin);
         this.click.play();
+        this.animateClick(newMuffin, 450, 670, .16);
       }
       handleCakepopClick() {
-        const newCakepop = this.add.image(700, 400, 'cakepop').setScale(0.1);
+        const newCakepop = this.add.image(100, 800, 'cakepop').setScale(0.3);
         this.addToMyCounter(newCakepop);
         this.click.play();
+        this.animateClick(newCakepop, 450, 720, .16);
       }
       handleLemonPumpClick() {
-        const newLemonPump = this.add.image(700, 400, 'lemonPump').setScale(0.1);
+        const newLemonPump = this.add.image(1100, 495, 'lemonPump').setScale(0.38);
         this.addToMyCounter(newLemonPump);
         this.click.play();
+        this.animateClick(newLemonPump, 335, 780, .18);
       }
       handleRaspberryPumpClick() {
-        const newRaspberryPump = this.add.image(700, 400, 'raspberryPump').setScale(0.1);
+        const newRaspberryPump = this.add.image(1100, 495, 'raspberryPump').setScale(0.38);
         this.addToMyCounter(newRaspberryPump);
         this.click.play();
+        this.animateClick(newRaspberryPump, 385, 780, .18);
       }
       handleMintPumpClick() {
-        const newMintPump = this.add.image(700, 400, 'mintPump').setScale(0.1);
+        const newMintPump = this.add.image(1300, 495, 'mintPump').setScale(0.38);
         this.addToMyCounter(newMintPump);
         this.click.play();
+        this.animateClick(newMintPump, 435, 780, .18);
     }
 
     addToMyCounter(image: Phaser.GameObjects.Image) {
