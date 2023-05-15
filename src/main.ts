@@ -13,8 +13,8 @@ import TutorialScene from './TutorialScene'
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	parent: 'app',
-	width: window.innerWidth,
-	height: window.innerHeight,
+	width: 1532,
+	height: 845,
 	physics: {
 		default: 'arcade',
 		arcade: {
