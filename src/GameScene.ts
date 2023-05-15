@@ -473,11 +473,21 @@ export default class GameScene extends Phaser.Scene {
               }
             } else {
                 this.queue[0].setVisible(true);
-                const tempText = this.add.text(650, 16, "+10", { font: '30px Avenir',
+                const tempText = this.add.text(650, 300, "+$10", { font: '30px Avenir',
                 color: '#4a2511',
-                backgroundColor: 'white', 
+                backgroundColor: '#b6f2a0', 
                 padding: {x:10, y:10}}
                 );
+
+                this.tweens.add({
+                  targets: tempText,
+                  duration: 1000,
+                  y: -50,
+                  alpha: 0,
+                  onComplete: () => {
+                      tempText.destroy();
+                  }
+              });
         
                 // Schedule the text to be destroyed after 'duration' milliseconds
                 this.time.delayedCall(1000, () => {
@@ -488,11 +498,20 @@ export default class GameScene extends Phaser.Scene {
             if (this.money >= 2) {
                 this.money -= 2;
                 this.moneyCount.setText('Money: ' + this.money);
-                const tempText = this.add.text(650, 16, "-2", { font: '30px Avenir',
+                const tempText = this.add.text(650, 200, "-$2", { font: '30px Avenir',
                 color: '#4a2511',
-                backgroundColor: 'white', 
+                backgroundColor: '#ff8b6b', 
                 padding: {x:10, y:10}}
                 );
+                this.tweens.add({
+                  targets: tempText,
+                  duration: 1000,
+                  y: -50,
+                  alpha: 0,
+                  onComplete: () => {
+                      tempText.destroy();
+                  }
+              });
         
                 // Schedule the text to be destroyed after 'duration' milliseconds
                 this.time.delayedCall(1000, () => {
