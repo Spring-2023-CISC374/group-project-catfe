@@ -6,7 +6,6 @@ import winScene from './winScene'
 import FinalWinScene from './FinalWinScene';
 
 import NarrativeScene from './NarrativeScene'
-import InstructionsScene from './InstructionsScene'
 import TutorialScene from './TutorialScene'
 
 
@@ -23,7 +22,7 @@ const config: Phaser.Types.Core.GameConfig = {
 		},
 	},
 
-	scene: [PreloadScene, GameScene, TitleScene, NarrativeScene, InstructionsScene, TutorialScene, winScene, FinalWinScene,],
+	scene: [PreloadScene, GameScene, TitleScene, NarrativeScene, TutorialScene, winScene, FinalWinScene,],
 
 }
 
