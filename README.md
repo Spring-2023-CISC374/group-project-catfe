@@ -43,6 +43,7 @@ Diya Shah:
 - Updated aesthetics for Money, Level, Replay, and final scene buttons
 - refactored code to get rid of static assets, replaced them with phaser text buttons than can be changee dynamically
 - refactored scenes to skips unused scenes from MVP (insttructions scenes)
+- Worked on scaling
 
 Robin Moore:
 - Refactored the code to create Cat objects
